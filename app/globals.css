@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand (indigo / primary) */
+  --brand-50:  #EEF0FF;
+  --brand-100: #DCE0FF;
+  --brand-200: #B8C0FF;
+  --brand-300: #8B96F5;
+  --brand-400: #5A67E0;
+  --brand-500: #2E3BC4;
+  --brand-600: #1620A5;
+  --brand-700: #07108F;  /* PRIMARY */
+  --brand-800: #060C6B;
+  --brand-900: #050A52;
+
+  /* Accent (gold) — used sparingly: badge "Gold", metrics, icons */
+  --accent-400: #FBBF5C;
+  --accent-500: #F5A623;
+  --accent-600: #D98A0B;
+
+  /* Neutral / Ink */
+  --ink-900: #0B1020;  /* heading */
+  --ink-700: #2A2F45;
+  --ink-600: #454B63;
+  --ink-500: #5B6178;  /* body text */
+  --ink-400: #8A90A6;  /* muted */
+  --line:    #E6E8F0;  /* border */
+  --line-strong: #D2D6E4;
+
+  /* Surface */
+  --surface:        #FFFFFF;
+  --surface-subtle: #F7F8FC;  /* alternating subtle grey */
+  --surface-blue:   #F3F5FF;  /* alternating subtle blue tint */
+
+  /* Semantic */
+  --success: #16A34A;
+  --warning: #D97706;
+  --danger:  #DC2626;
+
+  /* Hero gradient (strictly 2 colors) */
+  --hero-from: #07108F;
+  --hero-to:   #1A237E;
+
+  /* Radius */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px rgba(11,16,32,.04), 0 1px 3px rgba(11,16,32,.06);
+  --shadow-md: 0 4px 12px rgba(11,16,32,.06), 0 2px 4px rgba(11,16,32,.04);
+  --shadow-lg: 0 16px 40px rgba(7,16,143,.10);
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    color: var(--ink-500);
+    background-color: var(--surface);
+    font-family: var(--font-be-vietnam-pro), sans-serif;
+  }
+
+  body {
+    @apply antialiased overflow-x-hidden;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-inter), sans-serif;
+    color: var(--ink-900);
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    line-height: 1.1;
+    font-weight: 800;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    line-height: 1.15;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+}
+
+/* Hero background pattern */
+.hero-pattern {
+  background-color: var(--hero-from);
+  background-image: 
+    linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 100%),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px;
+}
+
+/* Card hover animation */
+.card-hover-effect {
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+.card-hover-effect:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand-200);
+  box-shadow: var(--shadow-md);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F3F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #C4C9D9;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9FA6BF;
+}
+
+/* Utility for text balance */
+.text-balance {
+  text-wrap: balance;
+}
