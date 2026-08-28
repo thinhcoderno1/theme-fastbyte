@@ -1,5 +1,5 @@
 import React from 'react';
-import { Headset, ShieldCheck, Terminal, Boxes, Check } from 'lucide-react';
+import { Headset, ShieldCheck, Terminal, Boxes } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { FeatureCard } from '@/components/ui/FeatureCard';

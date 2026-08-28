@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, BookOpen, Check, Server, Shield, Zap } from 'lucide-react';
+import { ChevronDown, Server, Shield, Zap } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button } from '@/components/ui/Button';

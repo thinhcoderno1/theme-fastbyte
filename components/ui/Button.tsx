@@ -54,7 +54,7 @@ export function Button({
         target={target}
         rel={target === '_blank' ? 'noopener noreferrer' : rel}
         className={combinedClasses}
-        {...(props as any)}
+        {...(props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {icon && iconPosition === 'left' && <span className="inline-flex shrink-0">{icon}</span>}
         <span>{children}</span>

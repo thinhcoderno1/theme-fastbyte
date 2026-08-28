@@ -181,11 +181,16 @@ export const VPS_PLANS: VpsPlan[] = [
   },
 ];
 
+const publicAssetBaseUrl = process.env.NEXT_PUBLIC_ASSET_BASE_URL?.replace(/\/+$/, '');
+if (!publicAssetBaseUrl) {
+  throw new Error('Thiếu NEXT_PUBLIC_ASSET_BASE_URL. Hãy sao chép .env.example thành .env.local.');
+}
+
 export const BENCHMARK_ITEMS: BenchmarkItem[] = [
   {
     id: 'bench-sysinfo',
     title: 'System Information',
-    imageUrl: 'https://thuevpsgiare.vn/wp-content/uploads/2026/08/system-information.png',
+    imageUrl: `${publicAssetBaseUrl}/wp-content/uploads/2026/08/system-information.png`,
     metricLabel: 'Hạ tầng CPU',
     metricValue: 'Intel® Xeon® Gold',
     summary: 'Cấu hình phần cứng máy chủ vật lý doanh nghiệp với ảo hóa KVM chuẩn quốc tế.',
@@ -198,7 +203,7 @@ export const BENCHMARK_ITEMS: BenchmarkItem[] = [
   {
     id: 'bench-dd',
     title: 'Tốc độ Đọc/Ghi Ổ Đĩa (DD Test)',
-    imageUrl: 'https://thuevpsgiare.vn/wp-content/uploads/2026/08/DD-information.png',
+    imageUrl: `${publicAssetBaseUrl}/wp-content/uploads/2026/08/DD-information.png`,
     metricLabel: 'Tốc độ I/O đĩa',
     metricValue: '1.5+ GB/s',
     summary: 'Ổ cứng Enterprise NVMe U.2 mang lại tốc độ truy xuất siêu tốc, gấp 5–7 lần SSD SATA thông thường.',
@@ -211,7 +216,7 @@ export const BENCHMARK_ITEMS: BenchmarkItem[] = [
   {
     id: 'bench-speedtest',
     title: 'Kiểm tra Băng thông & Độ trễ (Speedtest)',
-    imageUrl: 'https://thuevpsgiare.vn/wp-content/uploads/2026/08/speedtest-information.png',
+    imageUrl: `${publicAssetBaseUrl}/wp-content/uploads/2026/08/speedtest-information.png`,
     metricLabel: 'Độ trễ tại VN',
     metricValue: '1-20ms Ping',
     summary: 'Băng thông cổng mạng 100-200 Mbps không giới hạn lưu lượng, kết nối trực tiếp các nhà mạng lớn VNPT, Viettel, FPT.',
@@ -441,6 +446,6 @@ export const FAQS: FaqItem[] = [
   {
     id: 'faq-16',
     question: '16. Đội ngũ kỹ thuật hỗ trợ qua những kênh nào và trong thời gian bao lâu?',
-    answer: 'Fast Byte duy trì đội ngũ hỗ trợ kỹ thuật 24/7/365 qua hệ thống gửi Ticket tại id.thuevpsgiare.vn/submitticket.php, Hotline 02873006198 và Email support@thuevpsgiare.vn. Các yêu cầu kỹ thuật phát sinh liên quan đến hạ tầng, kết nối mạng và hệ điều hành sẽ được phản hồi xử lý trong vòng 15 – 30 phút.',
+    answer: 'Fast Byte duy trì đội ngũ hỗ trợ kỹ thuật 24/7/365 qua hệ thống gửi Ticket tại id.thuevpsgiare.vn/submitticket.php, Hotline 02873006198 và Email info@thuevpsgiare.vn. Các yêu cầu kỹ thuật phát sinh liên quan đến hạ tầng, kết nối mạng và hệ điều hành sẽ được phản hồi xử lý trong vòng 15 – 30 phút.',
   },
 ];

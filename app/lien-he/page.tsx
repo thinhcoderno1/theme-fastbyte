@@ -43,9 +43,9 @@ const contactChannels = [
   {
     icon: Mail,
     label: 'Email hỗ trợ',
-    value: 'support@thuevpsgiare.vn',
+    value: 'info@thuevpsgiare.vn',
     description: 'Gửi nội dung cần hỗ trợ và thông tin dịch vụ liên quan qua email.',
-    href: 'mailto:support@thuevpsgiare.vn',
+    href: 'mailto:info@thuevpsgiare.vn',
     action: 'Gửi email',
     external: false,
   },

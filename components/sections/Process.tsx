@@ -1,5 +1,5 @@
 import React from 'react';
-import { Server, CreditCard, Cpu, KeyRound, ArrowRight } from 'lucide-react';
+import { Server, CreditCard, Cpu, KeyRound } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';

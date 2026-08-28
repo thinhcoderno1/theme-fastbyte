@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Ảnh bài viết Fast Byte</title>
+  <desc id="desc">Ảnh thay thế khi bài viết chưa có ảnh đại diện</desc>
+  <rect width="1200" height="675" fill="#f3f5ff"/>
+  <rect x="310" y="170" width="580" height="335" rx="28" fill="#ffffff" stroke="#b8c0ff" stroke-width="8"/>
+  <path d="M390 425l120-120 95 95 70-70 135 135H390z" fill="#dce0ff"/>
+  <circle cx="710" cy="265" r="42" fill="#f5a623"/>
+  <text x="600" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#07108f">FAST BYTE BLOG</text>
+</svg>

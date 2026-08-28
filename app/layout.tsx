@@ -5,6 +5,7 @@ import { TopBar } from '@/components/layout/TopBar';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { FloatingContact } from '@/components/layout/FloatingContact';
+import { getAssetBaseUrl, getSiteUrl, isIndexingAllowed } from '@/lib/env';
 
 const inter = Inter({
   subsets: ['latin', 'vietnamese'],
@@ -19,8 +20,12 @@ const beVietnamPro = Be_Vietnam_Pro({
   display: 'swap',
 });
 
+const siteUrl = getSiteUrl();
+const allowIndexing = isIndexingAllowed();
+const logoUrl = new URL('/wp-content/uploads/2023/11/logo-thuevpsgiare-1.png', `${getAssetBaseUrl()}/`).toString();
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thuevpsgiare.vn'),
+  metadataBase: new URL(siteUrl),
   title: 'Thuê VPS Giá Rẻ Chỉ Từ 59.000đ/Tháng | VPS Gold NVMe – Fast Byte',
   description: 'Dịch vụ thuê VPS giá rẻ chỉ từ 59k/tháng tại Việt Nam. Trang bị CPU Intel® Xeon® Gold, ổ cứng Enterprise SSD NVMe U.2 siêu tốc, ảo hóa KVM độc lập tài nguyên, Uptime 99.9%, hỗ trợ 24/7.',
   keywords: [
@@ -37,11 +42,11 @@ export const metadata: Metadata = {
   creator: 'Fast Byte',
   publisher: 'Fast Byte',
   robots: {
-    index: true,
-    follow: true,
+    index: allowIndexing,
+    follow: allowIndexing,
     googleBot: {
-      index: true,
-      follow: true,
+      index: allowIndexing,
+      follow: allowIndexing,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -50,13 +55,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'vi_VN',
-    url: 'https://thuevpsgiare.vn',
+    url: siteUrl,
     siteName: 'Fast Byte – Thuê VPS Giá Rẻ',
     title: 'Thuê VPS Giá Rẻ Chỉ Từ 59.000đ/Tháng | VPS Gold NVMe – Fast Byte',
     description: 'Hạ tầng CPU Intel Gold & Ổ cứng NVMe U.2 Enterprise tốc độ vượt trội. Đặt tại Datacenter Tier 3 Việt Nam, cam kết Uptime 99.9%, hỗ trợ kỹ thuật 24/7.',
     images: [
       {
-        url: 'https://thuevpsgiare.vn/wp-content/uploads/2023/11/logo-thuevpsgiare-1.png',
+        url: logoUrl,
         width: 600,
         height: 315,
         alt: 'Thuê VPS Giá Rẻ Fast Byte',
@@ -67,10 +72,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Thuê VPS Giá Rẻ Chỉ Từ 59.000đ/Tháng | VPS Gold NVMe – Fast Byte',
     description: 'Hạ tầng CPU Intel Gold & Ổ cứng NVMe U.2 Enterprise tốc độ vượt trội. Đặt tại Datacenter Tier 3 Việt Nam.',
-    images: ['https://thuevpsgiare.vn/wp-content/uploads/2023/11/logo-thuevpsgiare-1.png'],
+    images: [logoUrl],
   },
   alternates: {
-    canonical: 'https://thuevpsgiare.vn',
+    canonical: siteUrl,
   },
 };
 
@@ -84,8 +89,8 @@ export default function RootLayout({
     '@type': 'Organization',
     name: 'Công ty TNHH Dữ liệu Nhanh Fast Byte',
     alternateName: 'Fast Byte',
-    url: 'https://thuevpsgiare.vn',
-    logo: 'https://thuevpsgiare.vn/wp-content/uploads/2023/11/logo-thuevpsgiare-1.png',
+    url: siteUrl,
+    logo: logoUrl,
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+84-28-7300-6198',

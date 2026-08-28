@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Zap, ArrowRight, PhoneCall, CheckCircle2, Shield, Cpu, HardDrive } from 'lucide-react';
+import { Zap, ArrowRight, PhoneCall, CheckCircle2 } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';

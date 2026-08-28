@@ -1,10 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShieldCheck, MapPin, Mail, Phone, Building2, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, MapPin, Mail, Phone, Building2 } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
+import { getAssetBaseUrl } from '@/lib/env';
 
 export function Footer() {
+  const commerceLogoUrl = new URL('/wp-content/uploads/2024/09/logoSaleNoti.png', `${getAssetBaseUrl()}/`).toString();
   return (
     <footer className="bg-brand-900 text-white pt-16 pb-12 border-t border-brand-800">
       <Container>
@@ -182,7 +184,7 @@ export function Footer() {
               >
                 <div className="relative w-[150px] h-[57px]">
                   <Image
-                    src="https://thuevpsgiare.vn/wp-content/uploads/2024/09/logoSaleNoti.png"
+                    src={commerceLogoUrl}
                     alt="Đã đăng ký Bộ Công Thương - Fast Byte"
                     fill
                     sizes="150px"

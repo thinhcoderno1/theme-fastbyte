@@ -14,12 +14,7 @@ interface BenchmarkImagePreviewProps {
 type PreviewMode = 'hover' | 'click' | null;
 
 export function BenchmarkImagePreview({ src, alt, metricValue }: BenchmarkImagePreviewProps) {
-  const [mounted, setMounted] = useState(false);
   const [previewMode, setPreviewMode] = useState<PreviewMode>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!previewMode) return;
@@ -79,7 +74,7 @@ export function BenchmarkImagePreview({ src, alt, metricValue }: BenchmarkImageP
         </div>
       </div>
 
-      {mounted && previewMode
+      {typeof document !== 'undefined' && previewMode
         ? createPortal(
             <div
               className={`fixed inset-0 z-[80] flex items-center justify-center bg-black/80 p-3 backdrop-blur-sm sm:p-6 ${

@@ -138,3 +138,35 @@
 .text-balance {
   text-wrap: balance;
 }
+
+/* Gutenberg HTML is scoped so WordPress styles cannot leak outside an article. */
+.wordpress-content { color: var(--ink-700); font-size: 1rem; line-height: 1.85; overflow-wrap: anywhere; }
+.wordpress-content > * + * { margin-top: 1.25rem; }
+.wordpress-content h2, .wordpress-content h3, .wordpress-content h4 { scroll-margin-top: 6.5rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+.wordpress-content h2 { font-size: clamp(1.55rem, 3vw, 2rem); }
+.wordpress-content h3 { font-size: 1.3rem; }
+.wordpress-content h4 { font-size: 1.1rem; }
+.wordpress-content p { margin-block: 1rem; }
+.wordpress-content strong { color: var(--ink-900); }
+.wordpress-content a { color: var(--brand-700); text-decoration: underline; text-underline-offset: 3px; }
+.wordpress-content a:hover { color: var(--brand-900); }
+.wordpress-content ul, .wordpress-content ol { margin: 1rem 0; padding-left: 1.5rem; }
+.wordpress-content ul { list-style: disc; }
+.wordpress-content ol { list-style: decimal; }
+.wordpress-content li + li { margin-top: .45rem; }
+.wordpress-content img { display: block; max-width: 100%; height: auto; border-radius: var(--r-md); }
+.wordpress-content figure { max-width: 100%; margin: 1.75rem 0; }
+.wordpress-content figcaption { margin-top: .65rem; color: var(--ink-500); font-size: .85rem; text-align: center; }
+.wordpress-content blockquote { margin: 1.75rem 0; border-left: 4px solid var(--brand-500); border-radius: 0 var(--r-md) var(--r-md) 0; background: var(--surface-blue); padding: 1rem 1.25rem; color: var(--ink-700); }
+.wordpress-content code { border-radius: 5px; background: #eef0f7; padding: .15rem .35rem; color: #b42318; font-size: .9em; }
+.wordpress-content pre { max-width: 100%; overflow-x: auto; border-radius: var(--r-md); background: #0b1020; padding: 1.25rem; color: #eef0ff; }
+.wordpress-content pre code { background: transparent; padding: 0; color: inherit; }
+.wordpress-content table { display: block; width: 100%; max-width: 100%; overflow-x: auto; border-collapse: collapse; white-space: nowrap; }
+.wordpress-content th, .wordpress-content td { border: 1px solid var(--line-strong); padding: .75rem 1rem; text-align: left; }
+.wordpress-content th { background: var(--surface-blue); color: var(--ink-900); }
+.wordpress-content hr { margin: 2.5rem 0; border: 0; border-top: 1px solid var(--line); }
+.wordpress-content .wp-block-group.has-background, .wordpress-content .wp-block-cover, .wordpress-content .is-style-note { border-radius: var(--r-md); background: var(--surface-blue); padding: 1.25rem; }
+
+@media (min-width: 768px) {
+  .wordpress-content { font-size: 1.0625rem; }
+}

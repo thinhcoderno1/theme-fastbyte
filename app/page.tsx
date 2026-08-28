@@ -12,6 +12,7 @@ import { Feedbacks } from '@/components/sections/Feedbacks';
 import { Partners } from '@/components/sections/Partners';
 import { Faqs } from '@/components/sections/Faqs';
 import { InfoSection } from '@/components/sections/InfoSection';
+import { getAssetBaseUrl } from '@/lib/env';
 
 export const revalidate = 900; // Refresh portal pricing every 15 minutes
 
@@ -21,13 +22,14 @@ export default async function HomePage() {
     getSpecialDeals(),
     getCloudVps(),
   ]);
+  const logoUrl = new URL('/wp-content/uploads/2023/11/logo-thuevpsgiare-1.png', `${getAssetBaseUrl()}/`).toString();
 
   // Schema.org Product / Offer Catalog JSON-LD
   const productCatalogSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: 'Dịch Vụ Thuê VPS Giá Rẻ - Fast Byte',
-    image: 'https://thuevpsgiare.vn/wp-content/uploads/2023/11/logo-thuevpsgiare-1.png',
+    image: logoUrl,
     description: 'Dịch vụ thuê máy chủ ảo VPS giá rẻ tại Việt Nam sử dụng CPU Intel Xeon Gold, ổ cứng SSD NVMe U.2 Enterprise, ảo hóa KVM 100% tài nguyên độc lập.',
     brand: {
       '@type': 'Brand',

@@ -1,0 +1,13 @@
+.git
+.gitignore
+.next
+node_modules
+npm-debug.log*
+.env
+.env.*
+!.env.example
+nginx/certs/*.crt
+nginx/certs/*.key
+Dockerfile*
+docker-compose*.yml
+README*.md
