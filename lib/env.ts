@@ -31,7 +31,7 @@ export function getAssetBaseUrl(): string {
 }
 
 export function isIndexingAllowed(): boolean {
-  return process.env.NEXT_PUBLIC_ALLOW_INDEXING === 'true';
+  return process.env.NEXT_PUBLIC_ALLOW_INDEXING !== 'false';
 }
 
 export function absoluteSiteUrl(path = '/'): string {

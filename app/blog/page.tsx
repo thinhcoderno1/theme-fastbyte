@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { BlogCard } from '@/components/blog/BlogCard';
 import { BlogGrid } from '@/components/blog/BlogGrid';
+import { BlogSearchForm } from '@/components/blog/BlogSearchForm';
 import { BlogEmptyState, BlogErrorState } from '@/components/blog/BlogState';
 import { Pagination } from '@/components/blog/Pagination';
 import { absoluteSiteUrl } from '@/lib/env';
@@ -43,6 +44,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-700">Kiến thức Fast Byte</p>
             <h1 className="mt-3">Blog VPS và hạ tầng máy chủ</h1>
             <p className="mt-4 max-w-3xl text-base leading-8 text-ink-600">Hướng dẫn, kinh nghiệm vận hành và kiến thức kỹ thuật giúp bạn sử dụng VPS an toàn, ổn định và hiệu quả hơn.</p>
+            <BlogSearchForm className="mt-7" />
           </Container>
         </section>
         <Container className="py-16"><BlogErrorState /></Container>
@@ -60,6 +62,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-700">Kiến thức Fast Byte</p>
             <h1 className="mt-3">Blog VPS và hạ tầng máy chủ</h1>
             <p className="mt-4 max-w-3xl text-base leading-8 text-ink-600">Hướng dẫn, kinh nghiệm vận hành và kiến thức kỹ thuật giúp bạn sử dụng VPS an toàn, ổn định và hiệu quả hơn.</p>
+            <BlogSearchForm className="mt-7" />
             {categoriesResult.data.length > 0 && (
               <nav className="mt-6 flex flex-wrap gap-2" aria-label="Danh mục blog">
                 {categoriesResult.data.map((category) => (

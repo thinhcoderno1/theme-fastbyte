@@ -41,7 +41,7 @@ Không commit `.env`, `.env.local`, secret, private key, `.next` hoặc `node_mo
 ```env
 NEXT_PUBLIC_SITE_URL=https://app.example.com
 NEXT_PUBLIC_ASSET_BASE_URL=https://cdn.example.com
-NEXT_PUBLIC_ALLOW_INDEXING=false
+NEXT_PUBLIC_ALLOW_INDEXING=true
 
 WORDPRESS_API_URL=https://cms.example.com/wp-json/wp/v2
 WORDPRESS_SITE_URL=https://cms.example.com
