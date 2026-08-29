@@ -51,7 +51,7 @@ export function FloatingContact() {
   return (
     <>
       <aside
-        className="fixed right-4 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-3 sm:right-6"
+        className="fixed bottom-20 right-4 z-40 flex flex-col gap-3 md:bottom-auto md:right-6 md:top-1/2 md:-translate-y-1/2"
         aria-label="Liên hệ nhanh"
       >
         {contacts.map((contact) => (

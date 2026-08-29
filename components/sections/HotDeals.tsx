@@ -4,6 +4,7 @@ import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
+import { MobilePlanCarousel } from '@/components/ui/MobilePlanCarousel';
 import { DealPlan } from '@/lib/types';
 
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
@@ -27,19 +28,23 @@ export function HotDeals({ deals }: HotDealsProps) {
           />
         </FadeIn>
 
-        <FadeInStagger className="grid grid-cols-1 gap-x-5 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
-          {deals.map((deal) => {
-            const specs = [deal.cpu, deal.ram, deal.disk, deal.ipv4, ...deal.bandwidth.split(' · ')];
+        <FadeInStagger amount="some">
+          <MobilePlanCarousel
+            ariaLabel="Các gói VPS Hot Deals"
+            desktopGridClassName="md:grid-cols-2 md:gap-y-9 lg:grid-cols-3"
+          >
+            {deals.map((deal) => {
+              const specs = [deal.cpu, deal.ram, deal.disk, deal.ipv4, ...deal.bandwidth.split(' · ')];
 
-            return (
-              <FadeIn key={deal.id} fullWidth className="h-full">
-                <article
-                  className={`group relative flex h-full min-h-[470px] flex-col rounded-[24px] bg-white px-7 pb-7 pt-9 transition-[background-color,border-color,box-shadow] duration-200 ease-out md:px-8 md:pb-8 ${
-                    deal.isPopular
-                      ? 'border-2 border-brand-500 shadow-[0_14px_35px_rgba(7,16,143,0.12)] hover:border-brand-700 hover:bg-brand-50 hover:shadow-[0_18px_42px_rgba(7,16,143,0.16)]'
-                      : 'border border-line shadow-sm hover:border-brand-300 hover:bg-brand-50 hover:shadow-[0_14px_34px_rgba(7,16,143,0.10)]'
-                  }`}
-                >
+              return (
+                <FadeIn key={deal.id} fullWidth className="h-full">
+                  <article
+                    className={`group relative flex h-full min-h-[470px] flex-col rounded-[24px] bg-white px-7 pb-7 pt-9 transition-[background-color,border-color,box-shadow] duration-200 ease-out md:px-8 md:pb-8 ${
+                      deal.isPopular
+                        ? 'border-2 border-brand-500 shadow-[0_14px_35px_rgba(7,16,143,0.12)] hover:border-brand-700 hover:bg-brand-50 hover:shadow-[0_18px_42px_rgba(7,16,143,0.16)]'
+                        : 'border border-line shadow-sm hover:border-brand-300 hover:bg-brand-50 hover:shadow-[0_14px_34px_rgba(7,16,143,0.10)]'
+                    }`}
+                  >
                   {deal.badge && (
                     <Badge
                       variant="brand"
@@ -83,10 +88,11 @@ export function HotDeals({ deals }: HotDealsProps) {
                   >
                     Đăng ký ngay
                   </Button>
-                </article>
-              </FadeIn>
-            );
-          })}
+                  </article>
+                </FadeIn>
+              );
+            })}
+          </MobilePlanCarousel>
         </FadeInStagger>
       </Container>
     </section>

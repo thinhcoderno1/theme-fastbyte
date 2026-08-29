@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { PricingCard } from '@/components/ui/PricingCard';
+import { MobilePlanCarousel } from '@/components/ui/MobilePlanCarousel';
 import { BillingCycleKey, BillingCyclePrice, VpsPlan } from '@/lib/types';
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
 
@@ -60,15 +61,20 @@ export function Pricing({ plans }: PricingProps) {
           </FadeIn>
         )}
 
-        <FadeInStagger className="grid grid-cols-1 gap-x-5 gap-y-9 md:grid-cols-2 lg:grid-cols-3">
-          {plans.map((plan) => (
-            <FadeIn key={plan.id} fullWidth className="h-full">
-              <PricingCard
-                plan={plan}
-                billingCycle={getCyclePrice(plan)}
-              />
-            </FadeIn>
-          ))}
+        <FadeInStagger amount="some">
+          <MobilePlanCarousel
+            ariaLabel="Các gói VPS trong bảng giá"
+            desktopGridClassName="md:grid-cols-2 md:gap-y-9 lg:grid-cols-3"
+          >
+            {plans.map((plan) => (
+              <FadeIn key={plan.id} fullWidth className="h-full">
+                <PricingCard
+                  plan={plan}
+                  billingCycle={getCyclePrice(plan)}
+                />
+              </FadeIn>
+            ))}
+          </MobilePlanCarousel>
         </FadeInStagger>
       </Container>
     </section>

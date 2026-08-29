@@ -139,6 +139,15 @@
   text-wrap: balance;
 }
 
+/* Native mobile plan sliders keep swipe behavior without showing a second scrollbar. */
+.mobile-plan-carousel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.mobile-plan-carousel::-webkit-scrollbar {
+  display: none;
+}
+
 /* Gutenberg HTML is scoped so WordPress styles cannot leak outside an article. */
 .wordpress-content { color: var(--ink-700); font-size: 1rem; line-height: 1.85; overflow-wrap: anywhere; }
 .wordpress-content > * + * { margin-top: 1.25rem; }
