@@ -177,7 +177,7 @@ export function Footer() {
             {/* Logo Bộ Công Thương */}
             <div className="pt-2">
               <a
-                href="https://online.gov.vn/nen-tang/26d07962-35fb-47b9-91f7-f95b46c43745"
+                href="http://online.gov.vn/nen-tang/6c1914fe-4504-47f3-aee2-d9f9ff834967"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block relative hover:opacity-90 transition-opacity"
