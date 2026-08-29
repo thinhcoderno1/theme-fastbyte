@@ -78,7 +78,7 @@ const channelGuide = [
   },
 ];
 
-const mapHref = 'https://www.google.com/maps/search/?api=1&query=200%20Song%20H%C3%A0nh%2C%20Ph%C6%B0%E1%BB%9Dng%20B%C3%ACnh%20Tr%C6%B0ng%2C%20TP.%20H%E1%BB%93%20Ch%C3%AD%20Minh';
+const mapHref = 'https://maps.app.goo.gl/fvCFRotNYJ4Qne6V9';
 
 export default function ContactPage() {
   return (
