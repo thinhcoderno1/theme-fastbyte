@@ -60,7 +60,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/blog/thay-doi-thong-tin-quan-tri-thuevpsgiare/"
-                  className="hover:text-white transition-colors flex items-center gap-1.5"
+                  className="hover:text-white transition-colors flex items-center gap-1.5 whitespace-nowrap"
                 >
                   <span className="text-brand-300">›</span> Hướng dẫn thay đổi thông tin quản trị
                 </Link>
@@ -149,12 +149,12 @@ export function Footer() {
           {/* Col 4: Doanh nghiệp & Bộ Công Thương */}
           <div>
             <h3 className="text-white text-[17px] font-heading font-semibold mb-4 border-l-2 border-accent-500 pl-3">
-              CÔNG TY TNHH DỮ LIỆU NHANH FAST BYTE
+              CTY TNHH DỮ LIỆU NHANH FAST BYTE
             </h3>
             <div className="space-y-3 text-[14px] text-white/80 mb-5">
               <div className="flex items-start gap-2.5">
                 <MapPin strokeWidth={1.75} size={18} className="text-accent-400 shrink-0 mt-0.5" />
-                <span>200 Song Hành, Phường Bình Trưng, TP. Hồ Chí Minh</span>
+                <span className="whitespace-nowrap">200 Song Hành, P. Bình Trưng, TP. HCM</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Building2 strokeWidth={1.75} size={18} className="text-accent-400 shrink-0" />
