@@ -51,7 +51,7 @@ export function Footer() {
             <ul className="space-y-2.5 text-[14px] text-white/80">
               <li>
                 <Link
-                  href="/huong-dan-gui-yeu-cau-ho-tro-tai-thue-vps-gia-re-fast-byte-ltd/"
+                  href="/blog/huong-dan-gui-yeu-cau-ho-tro-tai-thue-vps-gia-re-fast-byte-ltd/"
                   className="hover:text-white transition-colors flex items-center gap-1.5"
                 >
                   <span className="text-brand-300">›</span> Hướng dẫn gửi Tickets hỗ trợ
@@ -59,7 +59,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/thay-doi-thong-tin-quan-tri-thuevpsgiare/"
+                  href="/blog/thay-doi-thong-tin-quan-tri-thuevpsgiare/"
                   className="hover:text-white transition-colors flex items-center gap-1.5"
                 >
                   <span className="text-brand-300">›</span> Hướng dẫn thay đổi thông tin quản trị
