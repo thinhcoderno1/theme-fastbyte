@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="bg-brand-900 text-white pt-16 pb-12 border-t border-brand-800">
       <Container>
         {/* Main 4-column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-brand-800/80">
+        <div className="grid grid-cols-1 gap-10 border-b border-brand-800/80 pb-12 md:grid-cols-2 xl:grid-cols-4 xl:gap-8">
           {/* Col 1: Dịch vụ & Hướng dẫn */}
           <div>
             <h3 className="text-white text-[17px] font-heading font-semibold mb-4 border-l-2 border-accent-500 pl-3">
@@ -149,7 +149,8 @@ export function Footer() {
           {/* Col 4: Doanh nghiệp & Bộ Công Thương */}
           <div>
             <h3 className="text-white text-[17px] font-heading font-semibold mb-4 border-l-2 border-accent-500 pl-3">
-              CTY TNHH DỮ LIỆU NHANH FAST BYTE
+              <span className="block whitespace-nowrap">CÔNG TY TNHH DỮ LIỆU NHANH</span>
+              <span className="block">FAST BYTE</span>
             </h3>
             <div className="space-y-3 text-[14px] text-white/80 mb-5">
               <div className="flex items-start gap-2.5">
