@@ -23,7 +23,7 @@ const beVietnamPro = Be_Vietnam_Pro({
 const siteUrl = getSiteUrl();
 const allowIndexing = isIndexingAllowed();
 const logoUrl = new URL('/wp-content/uploads/2023/11/logo-thuevpsgiare-1.png', `${getAssetBaseUrl()}/`).toString();
-const faviconUrl = new URL('/icon.png', `${siteUrl}/`).toString();
+const ogImageUrl = new URL('/og-image.png', `${siteUrl}/`).toString();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     description: 'Hạ tầng CPU Intel Gold & Ổ cứng NVMe U.2 Enterprise tốc độ vượt trội. Đặt tại Datacenter Tier 3 Việt Nam, cam kết Uptime 99.9%, hỗ trợ kỹ thuật 24/7.',
     images: [
       {
-        url: faviconUrl,
+        url: ogImageUrl,
         width: 500,
         height: 500,
         alt: 'Thuê VPS Giá Rẻ Fast Byte',
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Thuê VPS Giá Rẻ Chỉ Từ 59.000đ/Tháng | VPS Gold NVMe – Fast Byte',
     description: 'Hạ tầng CPU Intel Gold & Ổ cứng NVMe U.2 Enterprise tốc độ vượt trội. Đặt tại Datacenter Tier 3 Việt Nam.',
-    images: [faviconUrl],
+    images: [ogImageUrl],
   },
   alternates: {
     canonical: siteUrl,
