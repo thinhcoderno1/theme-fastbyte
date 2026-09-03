@@ -27,6 +27,8 @@ import {
 
 export const revalidate = 300;
 
+const SHOW_POST_FEATURED_IMAGE = false;
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   try {
@@ -122,8 +124,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </Container>
         </header>
         <Container className="max-w-[1080px] py-10 md:py-14">
-          <div className="aspect-[16/9] overflow-hidden rounded-xl border border-line bg-surface-subtle"><BlogImage post={post} priority sizes="(max-width: 1080px) 100vw, 1080px" /></div>
-          <div className="mt-10 grid gap-10 lg:grid-cols-[240px_minmax(0,1fr)] lg:items-start">
+          {SHOW_POST_FEATURED_IMAGE && <div className="aspect-[16/9] overflow-hidden rounded-xl border border-line bg-surface-subtle"><BlogImage post={post} priority sizes="(max-width: 1080px) 100vw, 1080px" /></div>}
+          <div className={`${SHOW_POST_FEATURED_IMAGE ? 'mt-10 ' : ''}grid gap-10 lg:grid-cols-[240px_minmax(0,1fr)] lg:items-start`}>
             <aside className="lg:sticky lg:top-24"><TableOfContents headings={prepared.headings} /></aside>
             <div className="min-w-0"><WordPressContent html={prepared.html} /><div className="mt-10 border-t border-line pt-6"><ShareButtons url={postUrl} title={title} /></div>{terms.tags.length > 0 && <div className="mt-6 flex flex-wrap gap-2"><span className="text-sm font-semibold text-ink-700">Thẻ:</span>{terms.tags.map((tag) => <span key={tag.id} className="rounded-pill bg-surface-subtle px-3 py-1 text-xs text-ink-600">#{decodeTitle(tag.name)}</span>)}</div>}<Link href="/blog/" className="mt-8 inline-flex items-center gap-2 font-semibold text-brand-700 hover:text-brand-900"><ArrowLeft size={17} /> Quay lại trang blog</Link></div>
           </div>
