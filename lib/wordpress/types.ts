@@ -75,6 +75,12 @@ export interface WordPressPost {
   _embedded?: WordPressPostEmbedded;
 }
 
+export interface WordPressSitemapPost {
+  id: number;
+  slug: string;
+  modified_gmt: string;
+}
+
 export interface WordPressPagination {
   total: number;
   totalPages: number;

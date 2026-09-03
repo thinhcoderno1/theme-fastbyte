@@ -48,6 +48,7 @@ export async function POST(request: Request) {
   revalidateTag('wordpress-categories', 'max');
   revalidateTag('wordpress-tags', 'max');
   revalidatePath('/blog');
+  revalidatePath(`/${slug}`);
   revalidatePath(`/blog/${slug}`);
   revalidatePath('/blog/danh-muc/[slug]', 'page');
   revalidatePath('/sitemap.xml');

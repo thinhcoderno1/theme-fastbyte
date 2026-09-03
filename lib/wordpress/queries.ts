@@ -6,6 +6,7 @@ import type {
   WordPressCategory,
   WordPressCollection,
   WordPressPost,
+  WordPressSitemapPost,
   WordPressTag,
 } from './types';
 
@@ -40,6 +41,23 @@ export async function getPosts(input: GetPostsParams = {}): Promise<WordPressCol
   const perPage = Number(params.get('per_page'));
   const { data, headers } = await wordpressFetch<WordPressPost[]>('posts', params, { tags: ['wordpress-posts'] });
   return collectionFromHeaders(data, headers, page, perPage);
+}
+
+export async function getSitemapPosts(page = 1, perPage = 100): Promise<WordPressCollection<WordPressSitemapPost>> {
+  const normalizedPage = Math.max(1, page);
+  const normalizedPerPage = Math.min(100, Math.max(1, perPage));
+  const params = new URLSearchParams({
+    status: 'publish',
+    page: String(normalizedPage),
+    per_page: String(normalizedPerPage),
+    order: 'desc',
+    orderby: 'modified',
+    _fields: 'id,slug,modified_gmt',
+  });
+  const { data, headers } = await wordpressFetch<WordPressSitemapPost[]>('posts', params, {
+    tags: ['wordpress-posts'],
+  });
+  return collectionFromHeaders(data, headers, normalizedPage, normalizedPerPage);
 }
 
 export async function getPostBySlug(slug: string): Promise<WordPressPost | null> {
