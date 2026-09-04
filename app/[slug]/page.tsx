@@ -12,6 +12,7 @@ import { TableOfContents } from '@/components/blog/TableOfContents';
 import { WordPressContent } from '@/components/blog/WordPressContent';
 import { absoluteSiteUrl } from '@/lib/env';
 import { getPostBySlug, getRelatedPosts } from '@/lib/wordpress/queries';
+import { getPostMetaDescription } from '@/lib/wordpress/seo';
 import { getPostPath } from '@/lib/wordpress/urls';
 import {
   decodeTitle,
@@ -35,7 +36,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const post = await getPostBySlug(slug);
     if (!post) return { title: 'Không tìm thấy bài viết', robots: { index: false, follow: false } };
     const title = decodeTitle(post.title.rendered);
-    const description = stripHtml(post.excerpt.rendered).slice(0, 160);
+    const description = await getPostMetaDescription(post)
+      || stripHtml(post.excerpt.rendered).slice(0, 160);
     const url = absoluteSiteUrl(getPostPath(post.slug));
     const image = getBestImage(getFeaturedMedia(post));
     const author = getPostAuthor(post);
@@ -81,6 +83,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const { post, related } = result;
   const title = decodeTitle(post.title.rendered);
   const excerpt = stripHtml(post.excerpt.rendered);
+  const seoDescription = await getPostMetaDescription(post);
   const author = getPostAuthor(post);
   const terms = getPostTerms(post);
   const prepared = prepareWordPressContent(post.content.rendered);
@@ -91,7 +94,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const tagNames = terms.tags.map((tag) => decodeTitle(tag.name));
   const articleSchema = {
     '@context': 'https://schema.org', '@type': 'BlogPosting', headline: title,
-    description: excerpt, image: featuredImage?.url, datePublished: post.date, dateModified: post.modified,
+    description: seoDescription || excerpt, image: featuredImage?.url, datePublished: post.date, dateModified: post.modified,
     mainEntityOfPage: postUrl, author: author ? { '@type': 'Person', name: author.name } : undefined,
     publisher: { '@type': 'Organization', name: 'Fast Byte' }, articleSection: categoryName,
     keywords: tagNames.join(', '),
