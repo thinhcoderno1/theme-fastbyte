@@ -28,7 +28,7 @@ const termsMarkdown = readFileSync(markdownPath, 'utf8');
 const inlinePattern = /(\*\*[^*]+\*\*|\[[^\]]+\]\(https?:\/\/[^)]+\))/g;
 
 function renderInline(content: string): ReactNode[] {
-  return content.split(inlinePattern).filter(Boolean).map((part, index) => {
+  return content.replace(/&nbsp;/g, '\u00a0').replace(/\\\./g, '.').split(inlinePattern).filter(Boolean).map((part, index) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return <strong key={index}>{part.slice(2, -2)}</strong>;
     }
@@ -66,7 +66,18 @@ function parseTableRow(row: string) {
 }
 
 function renderMarkdown(markdown: string) {
-  const lines = markdown.replace(/\r\n/g, '\n').split('\n');
+  // The supplied document uses H1 for both its title and numbered sections.
+  // Preserve the source while presenting one H1 and nested section headings.
+  let hasTitle = false;
+  const lines = markdown.replace(/\r\n/g, '\n').split('\n').map((line) => {
+    if (line.startsWith('# ')) {
+      if (hasTitle) return `#${line}`;
+      hasTitle = true;
+    } else if (line.startsWith('## ')) {
+      return `#${line}`;
+    }
+    return line;
+  });
   const blocks: ReactNode[] = [];
   let index = 0;
 
@@ -93,6 +104,16 @@ function renderMarkdown(markdown: string) {
         <h2 key={`h2-${index}`} className="mt-12 border-b border-line pb-3 font-heading text-[23px] font-bold tracking-[-0.02em] text-ink-900 md:text-[27px]">
           {renderInline(line.slice(3))}
         </h2>,
+      );
+      index += 1;
+      continue;
+    }
+
+    if (line.startsWith('### ')) {
+      blocks.push(
+        <h3 key={`h3-${index}`} className="mt-8 font-heading text-[19px] font-bold text-ink-900 md:text-[21px]">
+          {renderInline(line.slice(4))}
+        </h3>,
       );
       index += 1;
       continue;
@@ -137,11 +158,12 @@ function renderMarkdown(markdown: string) {
       continue;
     }
 
-    if (line.startsWith('- ')) {
+    if (/^[-*] /.test(line)) {
       const items: string[] = [];
-      while (index < lines.length && lines[index].trim().startsWith('- ')) {
+      while (index < lines.length && /^[-*] /.test(lines[index].trim())) {
         items.push(lines[index].trim().slice(2));
         index += 1;
+        while (index < lines.length && !lines[index].trim()) index += 1;
       }
 
       blocks.push(
@@ -157,18 +179,23 @@ function renderMarkdown(markdown: string) {
       continue;
     }
 
-    const paragraph: string[] = [line];
+    const paragraph: string[] = [lines[index].trimStart()];
     index += 1;
     while (index < lines.length && lines[index].trim()) {
       const nextLine = lines[index].trim();
-      if (nextLine.startsWith('#') || nextLine.startsWith('|') || nextLine.startsWith('- ')) break;
-      paragraph.push(nextLine);
+      if (nextLine.startsWith('#') || nextLine.startsWith('|') || /^[-*] /.test(nextLine)) break;
+      paragraph.push(lines[index].trimStart());
       index += 1;
     }
 
     blocks.push(
       <p key={`p-${index}`} className="text-[15px] leading-7 text-ink-600 md:text-[16px] md:leading-8">
-        {renderInline(paragraph.join(' '))}
+        {paragraph.map((text, lineIndex) => (
+          <span key={lineIndex}>
+            {renderInline(text.trimEnd())}
+            {lineIndex < paragraph.length - 1 && (text.endsWith('  ') ? <br /> : ' ')}
+          </span>
+        ))}
       </p>,
     );
   }

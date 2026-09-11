@@ -1,96 +1,352 @@
-# **Điều khoản sử dụng**
+# **ĐIỀU KHOẢN SỬ DỤNG DỊCH VỤ**&nbsp;
 
-Khách hàng khi sử dụng dịch vụ tại thuevpsgiare.vn, hãy đảm bảo rằng khách hàng đã đọc kỹ và hoàn toàn đồng ý theo những điều khoản sử dụng dịch vụ của thuevpsgiare.vn để có một trải nghiệm tốt nhất.
+Để đảm bảo quá trình sử dụng dịch vụ được ổn định, an toàn và minh bạch, Quý Khách vui lòng đọc kỹ Điều khoản sử dụng dịch vụ này trước khi đăng ký, kích hoạt hoặc tiếp tục sử dụng dịch vụ của chúng tôi.
 
-## 1. Trách nhiệm của khách hàng
+Bằng việc đăng ký, thanh toán, kích hoạt hoặc tiếp tục sử dụng bất kỳ dịch vụ nào của chúng tôi, Quý Khách được hiểu là đã đọc, hiểu và đồng ý với các điều khoản dưới đây cùng các chính sách, quy định riêng được áp dụng cho từng sản phẩm/dịch vụ (nếu có).
 
-1.1. Khách hàng chịu trách nhiệm trước pháp luật về toàn bộ dữ liệu khi sử dụng dịch vụ thuê hạ tầng máy chủ tại  thuevpsgiare.vn. Đảm bảo các dữ liệu này không chứa phần mềm phá hoại và tuân thủ các quy định của pháp luật về quyền sở hữu công nghiệp, bản quyền, bí mật quốc gia, an ninh, văn hoá. Không sử dụng dịch vụ của thuevpsgiare.vncung cấp cho mục đích: tổ chức đánh bạc, cá độ, lô đề, hack, tấn công phá hoại (DDoS), lừa đảo, đào coin, Spam Mail (Spam Email trong trường hợp này được hiểu là thư rác điện tử theo quy định tại Nghị định 90/2008/NĐ-CP hoặc bất kỳ văn bản nào thay thế Nghị định 90/2008/NĐ-CP sau này). Nếu vi phạm điều khoản này, khách hàng sẽ hoàn toàn tự mình chịu trách nhiệm trước pháp luật mà không liên quan đến chúng tôi.
+# **1\. PHẠM VI VÀ NGUYÊN TẮC SỬ DỤNG DỊCH VỤ**
 
-1.2. Khách hàng cần lưu giữ các thông tin nhận biết, mật khẩu hay những thông tin khác liên quan đến tài khoản của dịch vụ hoặc tài khoản quản lý khách hàng một cách an toàn. Trong trường hợp phát hiện các hình thức truy cập trái phép sử dụng tài khoản của bạn hoặc các sơ hở về bảo mật như mất mát, đánh cắp hoặc để lộ thông tin về mật khẩu và các thông tin khác cần báo cho chúng tôi ngay lập tức.
+**1.1** Chúng tôi cung cấp các dịch vụ hạ tầng công nghệ thông tin, bao gồm nhưng không giới hạn: VPS, Cloud Server, Dedicated Server, Hosting, Storage, Backup và các dịch vụ liên quan theo thông tin công bố trên website, hệ thống quản lý dịch vụ hoặc theo thỏa thuận riêng với Quý Khách.
 
-1.3. Khách hàng có trách nhiệm tự bảo quản dữ liệu và mã nguồn trên máy chủ của  thuevpsgiare.vn không chịu bất cứ trách nhiệm nào trong mọi trường hợp liên quan tới dữ liệu của người dùng.
+**1.2** Thông số kỹ thuật, giới hạn tài nguyên, chính sách sử dụng, giá dịch vụ và các điều kiện riêng của từng sản phẩm được áp dụng theo thông tin công bố tại thời điểm Quý Khách đăng ký hoặc theo Hợp đồng/Phụ lục hợp đồng đã ký kết.
 
-1.4. Khách hàng có trách nhiệm bảo mật quyền truy nhập từ xa do thuevpsgiare.vn cấp, đồng thời khách hàng phải chịu trách nhiệm trước pháp luật nếu cố ý để quyền truy nhập từ xa bị bên thứ ba lợi dụng thực hiện các hành động phạm pháp.
+**1.3** Đối với những dịch vụ có điều khoản riêng, điều kiện riêng của dịch vụ đó được áp dụng đồng thời với Điều khoản sử dụng này. Trường hợp có khác biệt giữa các quy định, nội dung tại Hợp đồng/Phụ lục hợp đồng hoặc điều khoản riêng của dịch vụ sẽ được ưu tiên áp dụng cho phạm vi được quy định cụ thể.
 
-1.5. Khách hàng có trách nhiệm ký xác nhận biên bản nghiệm thu hoặc bản ghi nhớ công việc khi chúng tôi hoàn tất công việc tại các phụ lục đính kèm hợp đồng hợp tác dịch vụ. Trong vòng 05 (năm) ngày làm việc, kể từ ngày thuevpsgiare.vn có văn bản đề nghị nghiệm thu mà khách hàng không xác nhận nghiệm thu thì phụ lục coi như mặc nhiên được nghiệm thu.
+**1.4** Chúng tôi có quyền cập nhật, sửa đổi hoặc bổ sung Điều khoản sử dụng để phù hợp với thay đổi của sản phẩm, công nghệ, quy định pháp luật hoặc yêu cầu vận hành thực tế. Những thay đổi có ảnh hưởng đáng kể đến quyền và nghĩa vụ của Khách Hàng sẽ được thông báo thông qua website, email hoặc các kênh liên hệ phù hợp.
 
-1.6. Thông báo cho thuevpsgiare.vn về sự thay đổi tên, địa chỉ công ty, địa chỉ gửi hóa đơn thanh toán, số tài khoản, thời gian tạm ngưng dịch vụ (nếu có) trước ít nhất 14 (mười bốn) ngày làm việc.
+# **2\. TRÁCH NHIỆM CỦA KHÁCH HÀNG**
 
-1.7. Khách hàng cam kết thực hiện đúng quyền và nghĩa vụ được ký kết tại hợp đồng dịch vụ và các phụ lục kèm theo.
+## 2.1. Tuân thủ pháp luật và mục đích sử dụng
 
-1.8. Khách hàng có quyền tạm ngưng sử dụng dịch vụ nếu thuevpsgiare.vn vi phạm hợp đồng.
+Khách Hàng chịu trách nhiệm đối với nội dung, dữ liệu, phần mềm, ứng dụng và các hoạt động được thực hiện trên dịch vụ do chúng tôi cung cấp.
 
-1.9. Dịch vụ không hỗ trợ các mục đích vận hành server game, proxy, hoặc VPN dưới mọi hình thức. Việc sử dụng dịch vụ cho các hoạt động trên có thể dẫn đến việc tạm ngưng hoặc chấm dứt dịch vụ mà không cần thông báo trước. Khách hàng chịu trách nhiệm đảm bảo tuân thủ đúng các quy định và mục đích sử dụng đã được chấp thuận.
+Khách Hàng cam kết sử dụng dịch vụ phù hợp với pháp luật Việt Nam và các quy định có liên quan, đồng thời không sử dụng dịch vụ để thực hiện, hỗ trợ hoặc tạo điều kiện cho các hoạt động bất hợp pháp hoặc gây ảnh hưởng đến hệ thống của chúng tôi, khách hàng khác hoặc bên thứ ba.
 
-1.10. Khách hàng tự chịu trách nhiệm về việc cài đặt, quản lý và sử dụng hệ điều hành, phần mềm, ứng dụng và dữ liệu trên dịch vụ. Khách hàng cam kết không sử dụng các phần mềm vi phạm pháp luật hoặc xâm phạm quyền sở hữu trí tuệ của bên thứ ba. Nhà cung cấp chỉ cung cấp hạ tầng dịch vụ và có quyền tạm ngừng cung cấp dịch vụ khi nhận được yêu cầu từ cơ quan có thẩm quyền hoặc có căn cứ cho thấy dịch vụ được sử dụng cho mục đích vi phạm pháp luật.
+Các hành vi bị nghiêm cấm bao gồm nhưng không giới hạn:
 
-## 2. Trách nhiệm của thuevpsgiare.vn
+* Phát tán virus, malware, ransomware, trojan hoặc phần mềm độc hại;
 
-2.1. Cung cấp dịch vụ theo đúng nội dung đã thỏa thuận trong Hợp đồng hợp tác dịch vụ và Phụ lục hợp đồng kèm theo (khi có thay đổi mức phí dịch vụ thì chúng tôi sẽ thông báo và làm lại Phụ lục mới). Cam kết chất lượng dịch vụ theo đúng các thông số thể hiện trong phụ lục hợp đồng và quy định về tiêu chuẩn chất lượng dịch vụ.
+* Phishing, lừa đảo, giả mạo hoặc chiếm đoạt thông tin;
 
-2.2. Bảo mật thông tin của khách hàng và những dữ liệu khách hàng cung cấp cho thuevpsgiare.vn. Không được phép cung cấp thông tin cho bất kỳ bên thứ ba nào ngoại trừ khi có yêu cầu của các cơ quan chức năng có thẩm quyền hoặc được sự chấp thuận của khách hàng.
+* Tấn công, quét, khai thác trái phép hoặc phá hoại hệ thống của chúng tôi hoặc bên thứ ba;
 
-2.3. Giải quyết các khiếu nại của khách hàng về chất lượng dịch vụ trong phạm vi trách nhiệm của thuevpsgiare.vn chậm nhất 24 giờ sau khi nhận được khiếu nại.
+* DoS hoặc các hình thức gây gián đoạn dịch vụ trái phép;
 
-2.4. Không chịu trách nhiệm bồi thường dữ liệu của khách hàng lưu trữ tại thuevpsgiare.vn trong trường hợp: Khách hàng tự làm mất dữ liệu, do bên thứ ba cố tình phá hoại mà khách hàng không phòng chống được, hệ thống bị gián đoạn và lỗi do các sự cố bất khả kháng.
+* Spam, phát tán thư điện tử rác hoặc các hình thức gửi thông tin trái quy định pháp luật;
 
-2.5. Có quyền đơn phương tạm ngừng thực hiện Hợp đồng hợp tác dịch vụ nếu khách hàng vi phạm các điều khoản sử dụng dịch vụ, những điều khoản cam kết trong Hợp đồng và Phụ lục kèm theo. (Thời gian tạm ngừng sẽ kết thúc khi khách hàng khắc phục xong vi phạm và sẽ không tính vào thời hạn dịch vụ của hợp đồng và Phụ lục kèm theo).
+* Tổ chức hoặc hỗ trợ hoạt động đánh bạc, cá cược trái phép;
 
-2.6. Hỗ trợ kỹ thuật:
+* Lưu trữ, phân phối hoặc kinh doanh hàng hóa, dịch vụ bị pháp luật cấm;
 
-Cty TNHH Dữ Liệu Nhanh Fast Byte
+* Vi phạm quyền sở hữu trí tuệ, bản quyền, quyền đối với dữ liệu hoặc quyền hợp pháp của bên thứ ba;
 
-Hotline: 02873006198
+* Khai thác tiền điện tử hoặc các hoạt động tiêu thụ tài nguyên bất thường nếu sản phẩm/dịch vụ tương ứng không cho phép;
 
-Email: info@thuevpsgiare.vn
+* Sử dụng dịch vụ để thực hiện bất kỳ hoạt động nào có khả năng gây ảnh hưởng nghiêm trọng đến tính ổn định, an toàn hoặc hiệu năng của hạ tầng chúng tôi.
 
-2.7. thuevpsgiare.vn cam kết sẽ hoàn trả 100% giá trị hợp đồng (không bao gồm các loại phí phát sinh trong quá trình giao dịch) nếu không thực hiện đúng cam kết.
+Đối với thư điện tử rác, việc đánh giá và xử lý được thực hiện theo quy định pháp luật hiện hành về chống tin nhắn rác, thư điện tử rác, cuộc gọi rác và các văn bản sửa đổi, thay thế tương ứng.
 
-2.8. Thông báo bằng email hoặc văn bản cho khách hàng khi có bất kỳ sự thay đổi nào về dịch vụ hay bảo trì dịch vụ.
+## 2.2. Bảo mật tài khoản
 
-2.9. Bất kỳ lỗi, trễ, gián đoạn hoặc mất kết nối xuất hiện do thiết bị hay hệ thống của thuevpsgiare.vn ngoài việc giảm trừ phí thuê trong thời gian gián đoạn dịch vụ theo bảng dưới đây, thuevpsgiare.vn sẽ không chịu trách nhiệm đền bù bất kỳ thiệt hại nào khác. Trừ trường hợp thuevpsgiare.vn có chính sách bồi thường hỗ trợ riêng cho khách hàng.
+Khách Hàng có trách nhiệm bảo mật tài khoản quản trị, mật khẩu, khóa SSH, API Key, thông tin xác thực và các phương thức truy cập khác được sử dụng để quản lý dịch vụ.
 
-| **Hạng mục** | **Chính sách giảm trừ** |
-| --- | --- |
-| UPS và các điều kiện nguồn, điều hoà, thiết bị mạng, hạ tầng | Tổng thời gian gián đoạn trong tháng ≥ 24 h. Cứ mỗi 04 giờ gián đoạn sẽ giảm trừ 01 ngày cước của tháng kế tiếp |
-| Lỗi truy cập internet | Tổng thời gian gián đoạn trong tháng ≥ 24 h. Cứ mỗi 08 giờ gián đoạn sẽ giảm trừ 1 ngày cước của tháng kế tiếp |
+Khách Hàng chịu trách nhiệm đối với các hoạt động phát sinh từ tài khoản của mình, trừ trường hợp chứng minh được hoạt động đó phát sinh do lỗi trực tiếp từ hệ thống của chúng tôi.
 
-## 3. Tạm ngừng và chấm dứt sử dụng dịch vụ
+Chúng tôi khuyến nghị Khách Hàng:
 
-3.1. Dịch vụ do thuevpsgiare.vn cung cấp sẽ tự động chấm dứt/tạm ngừng theo thỏa thuận của hai bên hoặc đến thời điểm hết hiệu lực hợp đồng hợp tác dịch vụ. Trường hợp hóa đơn quá hạn 5 ngày kể từ ngày đáo hạn, hóa đơn sẽ cộng thêm 5% phí phạt chậm thanh toán.
+* Sử dụng mật khẩu có độ phức tạp cao;
 
-3.2. thuevpsgiare.vn có quyền tạm dừng thực hiện hợp đồng hoặc đơn phương chấm dứt hợp đồng dịch vụ trong các trường hợp sau đây:
+* Luôn luôn bật xác thực hai lớp;
 
-- Khách hàng có hành vi vi phạm quy định của Điều khoản sử dụng dịch vụ trong quá trình sử dụng sản phẩm, dịch vụ của thuevpsgiare.vn
-- Khách hàng không hợp tác và không đáp ứng phối hợp bổ sung tài liệu cần thiết.
-- Khách hàng không thực hiện việc gia hạn và thanh toán các khoản phí quá hạn sử dụng dịch vụ cho thuevpsgiare.vn trong thời hạn 5 ngày, kể từ thời điểm hết hạn sử dụng dịch vụ.
+* Hạn chế chia sẻ tài khoản quản trị;
 
-3.3. Trước khi chấm dứt sử dụng dịch vụ, khách hàng có trách nhiệm tự di chuyển toàn bộ dữ liệu đang lưu trữ trên máy chủ của thuevpsgiare.vn . thuevpsgiare.vn sẽ không chuyển dữ liệu của bạn đến cho một nhà cung cấp khác. Nếu bạn không chuyển dữ liệu website hoặc dữ liệu trên máy chủ ra khỏi hệ thống của thuevpsgiare.vn trước khi chấm dứt dịch vụ thì những dữ liệu này sẽ bị xóa (sau 5 ngày) và thuevpsgiare.vn sẽ không thể cung cấp bản sao lưu (backup) cho những dữ liệu này.
+* Định kỳ thay đổi thông tin xác thực;
 
-3.4. Đối với những dịch vụ dùng thử (Trial) hoặc miễn phí (Free), ngay khi kết thúc dịch vụ, tất cả những sản phẩm này cùng những dịch vụ, dữ liệu kèm theo (nếu có) sẽ bị hủy hoặc thu hồi.
+* Giới hạn quyền truy cập theo nhu cầu thực tế; …
 
-3.5. Nếu một trong hai bên vi phạm hợp đồng hợp tác mà dịch vụ đó có liên quan đến đầu tư thiết bị hay tài sản cố định, Bên vi phạm phải chịu đền bù cho bên còn lại một khoản chi phí hợp lý do bên bị vi phạm đề xuất nhưng tối đa không vượt mức 8% (tám phần trăm) giá trị Hợp đồng.
+Khi phát hiện dấu hiệu truy cập trái phép, mất hoặc lộ thông tin xác thực, Khách Hàng cần thông báo cho chúng tôi trong thời gian sớm nhất để phối hợp xử lý.
 
-3.6. Các khoản tiền quy định tại điều này phải được thanh toán cho Bên yêu cầu trong vòng 07 ngày làm việc kể từ ngày Bên đó có yêu cầu bằng văn bản.
+## 2.3. Quản lý hệ điều hành, phần mềm và dữ liệu
 
-## 4. Hỗ trợ khách hàng
+Đối với các dịch vụ mà Khách Hàng được cấp quyền quản trị hệ điều hành hoặc ứng dụng, Khách Hàng có trách nhiệm tự quản lý:
 
-4.1. thuevpsgiare.vn hỗ trợ nhanh khách hàng sử dụng dịch vụ qua đa dạng các kênh như điện thoại, livechat, fanpage, ticket, telegram.
+* Hệ điều hành và bản quyền hợp lệ của hệ điều hành;
 
-4.2. Đối với những trường hợp cần sự chính xác, bảo mật thông tin của khách hàng và có thể xử lý lâu hơn thuevpsgiare.vn yêu cầu gửi email tới info@thuevpsgiare.vn
+* Phần mềm và bản quyền hợp lệ của phần mềm;
 
-## 5. Bảo mật thông tin khách hàng
+* Mã nguồn;
 
-Chúng tôi tôn trọng sự riêng tư và quản lý nghiêm túc thông tin của khách hàng, thuevpsgiare.vn sẽ thu thập, sử dụng thông tin của khách hàng phù hợp với Chính sách bảo mật được nêu rõ tại đây:[https://thuevpsgiare.vn/chinh-sach-bao-mat/](https://thuevpsgiare.vn/chinh-sach-bao-mat/)( Chính sách bảo mật)
+* Ứng dụng;
 
-## 6. Bất khả kháng
+* Tài khoản người dùng;
 
-6.1. Trong trường hợp xảy ra bất kỳ sự kiện bất khả kháng nào như thảm họa thiên nhiên (thiên tai, lũ lụt, động đất, sóng thần, dịch bệnh,...), sự cố ngoài ý muốn (hỏa hoạn, đình công, khủng bố, bạo loạn,...), các cuộc tấn công mạng quy mô lớn (bao gồm tấn công từ chối dịch vụ DDoS quy mô lớn vượt quá quá năng lực thiết kế và xử lý kỹ thuật của Trung tâm dữ liệu, mã độc, ransomware, khai thác lỗ hổng bảo mật Zero-day,...), sự cố hoặc lỗ hổng an ninh mạng phát sinh từ phần mềm, nền tảng, hệ điều hành của bên thứ ba (bao gồm nhưng không giới hạn ở: cPanel, Linux Kernel, VMware, Proxmox, DirectAdmin,...) mà chưa có bản vá sửa lỗi chính thức từ nhà phát triển tại thời điểm xảy ra sự cố, sự can thiệp của cơ quan Nhà nước có thẩm quyền, hoặc bất kỳ sự kiện nào khác xảy ra ngoài tầm kiểm soát hợp lý của bất kỳ bên nào, không thể lường trước và không thể khắc phục được mặc dù đã áp dụng mọi biện pháp cần thiết, thì bên bị ảnh hưởng sẽ được tạm hoãn hoặc miễn thực hiện trách nhiệm hợp đồng, với điều kiện bên bị ảnh hưởng đó đã áp dụng mọi biện pháp cần thiết để ngăn ngừa, phòng chống, hạn chế hoặc khắc phục hậu quả của sự kiện đó.
+* Cấu hình bảo mật;
 
-6.2. Bên bị ảnh hưởng bởi sự kiện bất khả kháng có nghĩa vụ thông báo cho bên còn lại ngay khi có thể. Trường hợp sự kiện bất khả kháng xảy ra, các bên được miễn trách nhiệm bồi thường thiệt hại.
+* Dữ liệu được lưu trữ trên dịch vụ; …
 
-6.3. Nếu sự kiện bất khả kháng không chấm dứt trong vòng 30 (ba mươi) ngày làm việc hoặc một khoảng thời gian lâu hơn và vẫn tiếp tục ảnh hưởng đến việc thực hiện Hợp đồng hợp tác dịch vụ thì bên nào cũng có quyền đơn phương chấm dứt Hợp đồng và thông báo cho bên còn lại bằng văn bản trong vòng 10 (mười) ngày làm việc kể từ ngày dự định chấm dứt.
+Khách Hàng có trách nhiệm đảm bảo phần mềm sử dụng trên hệ thống có bản quyền hoặc giấy phép hợp lệ.
 
-Điều khoản sử dụng dịch sẽ được thay đổi và cập nhật cho phù hợp với từng thời điểm và các loại hình dịch vụ. Khách hàng có trách nhiệm thường xuyên theo dõi email hoặc văn bản này để đảm bảo luôn thực hiện đúng theo các điều khoản quy định.
+## 2.4. Sao lưu dữ liệu
 
-Nội dung được cập nhật lần cuối vào lúc 08:00 AM – Ngày 21 tháng 10 năm 2023
+Khách Hàng có trách nhiệm chủ động xây dựng phương án sao lưu phù hợp với mức độ quan trọng của dữ liệu. Trừ trường hợp dịch vụ được công bố rõ ràng là có kèm theo tính năng Backup, việc cung cấp máy chủ hoặc tài nguyên lưu trữ không đồng nghĩa với việc chúng tôi có nghĩa vụ sao lưu toàn bộ dữ liệu của Khách Hàng. Ngay cả khi dịch vụ có Backup, Khách Hàng vẫn nên duy trì bản sao lưu độc lập đối với dữ liệu quan trọng.
+
+Việc có bản sao lưu không thay thế cho trách nhiệm bảo đảm dữ liệu của Khách Hàng. Chúng tôi không chịu trách nhiệm trong bất cứ trường hợp nào liên quan đến dữ liệu của người dùng.  
+Việc cung cấp tính năng Backup là một biện pháp hỗ trợ khôi phục dữ liệu theo phạm vi dịch vụ và không thay thế trách nhiệm của Khách Hàng trong việc quản lý, bảo vệ và sao lưu dữ liệu. Khả năng khôi phục dữ liệu phụ thuộc vào tình trạng thực tế của hệ thống và bản sao lưu tại thời điểm phát sinh sự cố.
+
+## 2.5. Sử dụng tài nguyên
+
+Khách Hàng cam kết sử dụng tài nguyên CPU, RAM, Storage, Network và các tài nguyên khác trong phạm vi cấu hình và chính sách của dịch vụ.
+
+Trường hợp việc sử dụng tài nguyên gây ảnh hưởng đáng kể đến hệ thống, hiệu năng của khách hàng khác hoặc an toàn của hạ tầng, chúng tôi có quyền áp dụng các biện pháp kỹ thuật cần thiết để hạn chế ảnh hưởng, bao gồm giới hạn, điều chỉnh hoặc tạm ngừng phần dịch vụ bị ảnh hưởng.
+
+## 2.6. Dịch vụ không được hỗ trợ
+
+Trừ khi có thỏa thuận riêng bằng văn bản, một số dịch vụ có thể không được sử dụng cho:
+
+* Server Game;
+
+* Proxy;
+
+* VPN;
+
+* Các hệ thống tạo lưu lượng mạng bất thường;
+
+* Các hoạt động có tính chất chia sẻ tài nguyên cho bên thứ ba;
+
+* Các mô hình sử dụng làm ảnh hưởng đến hệ thống hoặc vi phạm chính sách mạng của chúng tôi, …
+
+Chúng tôi có thể xem xét và chấp thuận riêng đối với một số trường hợp sử dụng hợp pháp, phù hợp với khả năng kỹ thuật và chính sách vận hành.
+
+# **3\. DỮ LIỆU VÀ QUYỀN SỞ HỮU**
+
+**3.1** Trừ quyền sử dụng cần thiết để cung cấp dịch vụ, Khách Hàng vẫn sở hữu hoặc kiểm soát các quyền hợp pháp đối với dữ liệu, nội dung và tài sản trí tuệ do Khách Hàng đưa lên hệ thống.
+
+**3.2** Chúng tôi không sử dụng nội dung dữ liệu của Khách Hàng cho mục đích thương mại riêng ngoài phạm vi cần thiết để cung cấp, vận hành, bảo vệ và cải thiện dịch vụ, trừ trường hợp được Khách Hàng chấp thuận hoặc pháp luật có quy định khác.
+
+**3.3** Chúng tôi có thể xử lý hoặc truy cập dữ liệu trong phạm vi cần thiết để:
+
+* Cung cấp dịch vụ;
+
+* Hỗ trợ kỹ thuật theo yêu cầu;
+
+* Xử lý sự cố;
+
+* Bảo đảm an toàn, bảo mật hệ thống;
+
+* Phát hiện và ngăn chặn hành vi lạm dụng;
+
+* Thực hiện nghĩa vụ pháp lý.
+
+Việc truy cập dữ liệu, nếu có, được thực hiện trong phạm vi cần thiết cho mục đích nêu trên.
+
+**3.4** Khách Hàng chịu trách nhiệm đảm bảo mình có đầy đủ quyền và cơ sở pháp lý cần thiết đối với dữ liệu được lưu trữ, xử lý hoặc truyền tải qua hệ thống chúng tôi.
+
+# **4\. TRÁCH NHIỆM CỦA CHÚNG TÔI**
+
+**4.1** Cung cấp dịch vụ theo đúng thông số kỹ thuật, cấu hình, thời hạn và phạm vi đã công bố hoặc thỏa thuận với Khách Hàng.
+
+**4.2** Duy trì và vận hành hạ tầng với các biện pháp kỹ thuật, quản trị và bảo mật phù hợp với tính chất của dịch vụ.
+
+**4.3** Bảo mật thông tin Khách Hàng trong phạm vi trách nhiệm của chúng tôi và phù hợp với Chính sách bảo mật của chúng tôi.
+
+**4.4** Tiếp nhận và xử lý các yêu cầu hỗ trợ, khiếu nại của Khách Hàng theo quy trình hỗ trợ của chúng tôi.
+
+**4.5** Đối với các sự cố thuộc phạm vi trách nhiệm của chúng tôi, chúng tôi có trách nhiệm phối hợp xử lý và cập nhật tình trạng sự cố cho Khách Hàng trong thời gian phù hợp với mức độ ảnh hưởng của sự cố.
+
+**4.6** Chúng tôi có thể thực hiện bảo trì, nâng cấp, tối ưu hoặc thay đổi hạ tầng nhằm duy trì an toàn và chất lượng dịch vụ. Trong trường hợp có thể dự báo trước, chúng tôi sẽ thông báo cho Khách Hàng theo phương thức phù hợp.
+
+**4.7** Chúng tôi có trách nhiệm hỗ trợ Khách Hàng xuyên suốt quá trình sử dụng dịch vụ bất kể ngày nghỉ, lễ, Tết trong phạm vi và quyền hạn. Chúng tôi không hỗ trợ các vấn đề can thiệp sâu vào dữ liệu Khách Hàng như thay đổi/ sửa mã nguồn, thay đổi các thông tin cấu hình về dữ liệu cá nhân của Khách Hàng được lưu trữ tại máy chủ của chúng tôi.
+
+**4.8** Trong các trường hợp: Khách hàng tự làm mất dữ liệu, do bên thứ ba cố tình phá hoại mà khách hàng không chủ động phòng chống hoặc không phòng chống được, hệ thống bị gián đoạn và lỗi do các sự cố bất khả kháng, … Chúng tôi được miễn trừ trách nhiệm bồi thường.&nbsp;
+
+# **5\. GIỚI HẠN TRÁCH NHIỆM VÀ DỮ LIỆU**
+
+**5.1** Chúng tôi nỗ lực duy trì dịch vụ ổn định và an toàn nhưng không cam kết rằng dịch vụ sẽ hoàn toàn không xảy ra gián đoạn, lỗi kỹ thuật hoặc sự cố.
+
+**5.2** Chúng tôi không chịu trách nhiệm đối với các thiệt hại phát sinh từ:
+
+* Lỗi cấu hình hoặc thao tác của Khách Hàng;
+
+* Phần mềm, mã nguồn hoặc ứng dụng của Khách Hàng;
+
+* Mất, lộ hoặc sử dụng trái phép thông tin đăng nhập do Khách Hàng quản lý;
+
+* Việc Khách Hàng không thực hiện sao lưu dữ liệu;
+
+* Hành vi của người dùng hoặc bên thứ ba được Khách Hàng cấp quyền truy cập;
+
+* Lỗi hoặc lỗ hổng của phần mềm, hệ điều hành, nền tảng bên thứ ba;
+
+* Hành vi tấn công từ bên ngoài nằm ngoài khả năng phòng chống hợp lý của chúng tôi;
+
+* Sự kiện bất khả kháng;
+
+* Việc Khách Hàng sử dụng dịch vụ không đúng hướng dẫn hoặc không đúng mục đích.
+
+**5.3** Đối với trường hợp mất dữ liệu, mức độ phục hồi phụ thuộc vào việc dữ liệu có bản sao lưu hợp lệ hay không và phạm vi của dịch vụ Backup mà Khách Hàng đã đăng ký.
+
+**5.4** Chúng tôi không chịu trách nhiệm đối với các thiệt hại gián tiếp như mất doanh thu, mất lợi nhuận, mất cơ hội kinh doanh, … mất dữ liệu do hành vi của Khách Hàng hoặc thiệt hại phát sinh từ việc sử dụng dịch vụ không đúng mục đích, trừ trường hợp pháp luật bắt buộc có quy định khác.
+
+**5.5** Trong phạm vi pháp luật cho phép và trừ trường hợp các bên có thỏa thuận khác bằng văn bản, tổng trách nhiệm bồi thường của chúng tôi đối với một khiếu nại liên quan trực tiếp đến dịch vụ không vượt quá tổng số phí dịch vụ mà Khách hàng đã thực tế thanh toán cho chu kỳ dịch vụ gần nhất ngay trước thời điểm xảy ra sự cố.&nbsp;
+
+# **6\. TẠM NGỪNG DỊCH VỤ**
+
+Chúng tôi có quyền tạm ngừng toàn bộ hoặc một phần dịch vụ trong các trường hợp cần thiết để bảo vệ hệ thống, khách hàng khác hoặc tuân thủ pháp luật, bao gồm nhưng không giới hạn:
+
+**6.1** Khách Hàng vi phạm Điều khoản sử dụng hoặc chính sách riêng của dịch vụ.
+
+**6.2** Phát hiện hoạt động có dấu hiệu gây nguy hiểm cho an toàn thông tin hoặc tính ổn định của hệ thống.
+
+**6.3** Phát hiện tài khoản, máy chủ hoặc dịch vụ có dấu hiệu bị xâm nhập hoặc bị sử dụng trái phép.
+
+**6.4** Dịch vụ phát sinh lưu lượng, tải hoặc hành vi có khả năng ảnh hưởng đến hạ tầng chung hoặc khách hàng khác.
+
+**6.5** Có yêu cầu từ cơ quan nhà nước có thẩm quyền.
+
+**6.6** Khách Hàng chậm thanh toán hoặc không thực hiện nghĩa vụ tài chính theo thỏa thuận.
+
+**6.7** Trường hợp khẩn cấp liên quan đến an ninh mạng, tấn công mạng, mã độc hoặc sự cố có nguy cơ lan rộng, chúng tôi có thể thực hiện biện pháp bảo vệ ngay lập tức mà không cần thông báo trước.
+
+Trong phạm vi có thể thực hiện được, chúng tôi sẽ thông báo cho Khách Hàng về lý do và phương án xử lý.
+
+Khi nguyên nhân tạm ngừng được khắc phục, chúng tôi sẽ xem xét khôi phục dịch vụ theo điều kiện kỹ thuật và chính sách áp dụng.
+
+# **7\. THANH TOÁN, GIA HẠN VÀ CHẬM THANH TOÁN**
+
+**7.1** Khách Hàng có trách nhiệm thanh toán đầy đủ và đúng hạn theo kỳ hạn được lựa chọn.
+
+**7.2** Chúng tôi có thể gửi thông báo gia hạn trước ngày hết hạn thông qua email, hệ thống quản lý dịch vụ hoặc các phương thức liên hệ đã được Khách Hàng đăng ký.
+
+**7.3** Trường hợp quá hạn thanh toán, chúng tôi có quyền tạm ngừng hoặc hạn chế dịch vụ sau thời gian thông báo được áp dụng cho từng loại dịch vụ.
+
+**7.4** Trường hợp hóa đơn quá hạn 5 ngày kể từ ngày đáo hạn, hóa đơn sẽ cộng thêm 5% phí phạt chậm thanh toán.
+
+**7.5** Việc Khách Hàng không sử dụng dịch vụ trong thời gian dịch vụ còn hiệu lực không mặc nhiên làm phát sinh quyền hoàn lại phí.
+
+**7.6** Chính sách hoàn phí, hoàn tiền hoặc khấu trừ được thực hiện theo chính sách của từng sản phẩm, chương trình khuyến mại hoặc Hợp đồng đã ký kết.
+
+# **8\. CHẤM DỨT DỊCH VỤ**
+
+**8.1** Dịch vụ chấm dứt khi:
+
+* Hết thời hạn sử dụng và Khách Hàng không gia hạn;
+
+* Khách Hàng yêu cầu chấm dứt;
+
+* Hai bên có thỏa thuận khác;
+
+* Chúng tôi chấm dứt dịch vụ theo các trường hợp được quy định trong Điều khoản này;
+
+* Cơ quan có thẩm quyền yêu cầu hoặc pháp luật quy định dịch vụ phải chấm dứt.
+
+**8.2** Trước thời điểm chấm dứt, Khách Hàng có trách nhiệm chủ động sao lưu và di chuyển dữ liệu nếu muốn tiếp tục sử dụng dữ liệu sau khi dịch vụ kết thúc.
+
+**8.3** Trong thời gian dịch vụ còn hiệu lực hoặc trong khoảng thời gian hỗ trợ sau khi hết hạn được chúng tôi công bố cho từng loại dịch vụ, Khách Hàng có thể thực hiện việc xuất hoặc di chuyển dữ liệu thông qua các phương thức kỹ thuật mà dịch vụ hỗ trợ.
+
+**8.4** Chúng tôi không có nghĩa vụ thực hiện việc di chuyển dữ liệu sang nhà cung cấp khác thay mặt Khách Hàng, trừ trường hợp hai bên có thỏa thuận riêng.
+
+# **9\. XỬ LÝ DỮ LIỆU SAU KHI DỊCH VỤ HẾT HẠN**
+
+**9.1** Sau khi dịch vụ hết hạn, chúng tôi có thể chuyển dịch vụ sang trạng thái tạm ngừng và hạn chế quyền truy cập để bảo vệ dữ liệu và hạ tầng.
+
+**9.2** Dữ liệu có thể được lưu giữ trong một khoảng thời gian xử lý nhất định sau khi dịch vụ hết hạn nhằm tạo điều kiện cho Khách Hàng gia hạn hoặc thực hiện việc di chuyển dữ liệu.
+
+**9.3** Sau khi hết thời gian lưu giữ theo chính sách của từng dịch vụ, chúng tôi có quyền xóa dữ liệu, snapshot, backup và các tài nguyên liên quan mà không cần khôi phục lại sau đó.
+
+**9.4** Một khi dữ liệu đã được xóa khỏi hệ thống và không còn bản sao có khả năng khôi phục, chúng tôi không thể cam kết phục hồi dữ liệu.
+
+**9.5** Khách Hàng có trách nhiệm chủ động sao lưu dữ liệu trước ngày hết hạn dịch vụ.
+
+# **10\. DỊCH VỤ DÙNG THỬ VÀ KHUYẾN MẠI**
+
+**10.1** Các chương trình dùng thử, miễn phí hoặc khuyến mại được áp dụng theo điều kiện riêng được công bố tại thời điểm đăng ký.
+
+**10.2** Chúng tôi có quyền giới hạn số lượng, cấu hình, thời gian sử dụng hoặc tài nguyên của dịch vụ dùng thử.
+
+**10.3** Khi chương trình dùng thử kết thúc, Khách Hàng có quyền gia hạn hoặc ngừng sử dụng theo hướng dẫn của chương trình.
+
+**10.4** Dữ liệu của dịch vụ dùng thử có thể bị xóa ngay sau khi chương trình kết thúc nếu Khách Hàng không chuyển sang dịch vụ chính thức trong thời gian quy định.
+
+**10.5** Chúng tôi có quyền chấm dứt chương trình dùng thử đối với các tài khoản có dấu hiệu lạm dụng, tạo nhiều tài khoản nhằm hưởng ưu đãi hoặc vi phạm chính sách sử dụng.
+
+# **11\. HỖ TRỢ KHÁCH HÀNG**
+
+**11.1** Chúng tôi tiếp nhận yêu cầu hỗ trợ kỹ thuật trong phạm vi dịch vụ thông qua:
+
+* Ticket: https://id.thuevpsgiare.vn/
+
+* Hotline: 02873.006.198
+
+* Email: info@thuevpsgiare.vn
+
+**11.2** Thời gian tiếp nhận và xử lý được xác định theo mức độ ưu tiên của từng yêu cầu và chính sách hỗ trợ của sản phẩm.
+
+**11.3** Chúng tôi hỗ trợ các vấn đề liên quan đến hạ tầng, dịch vụ và các nội dung thuộc phạm vi trách nhiệm của nhà cung cấp.
+
+**11.4** Các công việc như phát triển, chỉnh sửa mã nguồn ứng dụng, sửa lỗi website, tối ưu phần mềm của Khách Hàng, quản trị hệ thống chuyên sâu hoặc các công việc ngoài phạm vi dịch vụ có thể được cung cấp như dịch vụ hỗ trợ riêng nếu chúng tôi có chính sách hoặc báo giá tương ứng.
+
+**11.5** Trong trường hợp cần thiết để xử lý sự cố, chúng tôi có thể yêu cầu Khách Hàng cung cấp thông tin cấu hình, log hoặc quyền truy cập tạm thời phù hợp. Khách Hàng có quyền thay đổi hoặc thu hồi quyền truy cập sau khi việc hỗ trợ hoàn tất.
+
+# **12\. BẢO MẬT VÀ XỬ LÝ DỮ LIỆU CÁ NHÂN**
+
+**12.1** Chúng tôi khẳng định tôn trọng quyền riêng tư và thực hiện việc thu thập, sử dụng, lưu trữ và xử lý thông tin Khách Hàng theo Chính sách bảo mật của chúng tôi và quy định pháp luật hiện hành.
+
+**12.2** Chúng tôi chỉ xử lý dữ liệu trong phạm vi cần thiết để cung cấp dịch vụ, hỗ trợ khách hàng, bảo đảm an toàn hệ thống, thực hiện nghĩa vụ hợp pháp hoặc các mục đích đã được thông báo/chấp thuận theo quy định.
+
+**12.3** Trong trường hợp pháp luật yêu cầu hoặc có yêu cầu hợp lệ từ cơ quan có thẩm quyền, chúng tôi có thể cung cấp hoặc xử lý thông tin theo yêu cầu đó trong phạm vi pháp luật cho phép.
+
+**12.4** Khách Hàng chịu trách nhiệm đảm bảo việc đưa dữ liệu cá nhân của người khác lên hệ thống chúng tôi được thực hiện trên cơ sở pháp lý phù hợp.
+
+# **13\. SỞ HỮU TRÍ TUỆ**
+
+**13.1** Tên thương hiệu chúng tôi, logo, giao diện, nội dung, tài liệu, phần mềm quản lý và các tài sản trí tuệ thuộc chúng tôi hoặc đối tác của chúng tôi được bảo vệ theo pháp luật hiện hành.
+
+**13.2** Khách Hàng không được sao chép, phân phối, sửa đổi, tái sử dụng hoặc khai thác các tài sản trí tuệ của chúng tôi khi chưa có sự đồng ý bằng văn bản, trừ trường hợp pháp luật có quy định khác.
+
+**13.3** Khách Hàng chịu trách nhiệm đối với mọi khiếu nại của bên thứ ba phát sinh từ việc Khách Hàng sử dụng phần mềm, nội dung hoặc tài sản trí tuệ không có quyền sử dụng hợp pháp.
+
+# **14\. BẤT KHẢ KHÁNG**
+
+**14.1** Sự kiện bất khả kháng bao gồm nhưng không giới hạn ở thảm họa thiên nhiên (thiên tai, lũ lụt, động đất, sóng thần, dịch bệnh,...), sự cố ngoài ý muốn (hỏa hoạn, đình công, khủng bố, bạo loạn,...), các cuộc tấn công mạng quy mô lớn (bao gồm tấn công từ chối dịch vụ DDoS quy mô lớn vượt quá quá năng lực thiết kế và xử lý kỹ thuật của Trung tâm dữ liệu, mã độc, ransomware, khai thác lỗ hổng bảo mật Zero-day,...), sự cố hoặc lỗ hổng an ninh mạng phát sinh từ phần mềm, nền tảng, hệ điều hành của bên thứ ba (bao gồm nhưng không giới hạn ở: cPanel, Linux Kernel, VMware, Proxmox, DirectAdmin, ...) mà chưa có bản vá sửa lỗi chính thức từ nhà phát triển tại thời điểm xảy ra sự cố, sự can thiệp của cơ quan Nhà nước có thẩm quyền, hoặc bất kỳ sự kiện nào khác xảy ra ngoài tầm kiểm soát hợp lý của bất kỳ bên nào, không thể lường trước và không thể khắc phục được mặc dù đã áp dụng mọi biện pháp cần thiết.
+
+**14.2** Bên bị ảnh hưởng bởi sự kiện bất khả kháng được miễn hoặc tạm hoãn thực hiện nghĩa vụ bị ảnh hưởng trong phạm vi và thời gian cần thiết, với điều kiện đã áp dụng các biện pháp hợp lý để ngăn ngừa, hạn chế và khắc phục hậu quả.
+
+**14.3** Bên bị ảnh hưởng có trách nhiệm thông báo cho bên còn lại trong thời gian sớm nhất có thể.
+
+**14.4** Các bên sẽ phối hợp để khôi phục dịch vụ và hạn chế tối đa ảnh hưởng đến hoạt động của Khách Hàng.
+
+**14.5** Trường hợp sự kiện bất khả kháng kéo dài và làm cho việc tiếp tục thực hiện hợp đồng không còn khả thi, mỗi bên có quyền xem xét chấm dứt hợp đồng theo thỏa thuận hoặc quy định pháp luật.
+
+# **15\. KHIẾU NẠI VÀ GIẢI QUYẾT TRANH CHẤP**
+
+**15.1** Khách Hàng có thể gửi yêu cầu khiếu nại thông qua hệ thống Ticket, email hoặc các kênh hỗ trợ chính thức của chúng tôi.
+
+**15.2** Chúng tôi sẽ tiếp nhận, xác minh và phản hồi trong thời gian phù hợp với tính chất vụ việc.
+
+**15.3** Các bên ưu tiên giải quyết tranh chấp bằng thương lượng và thiện chí hợp tác.
+
+**15.4** Trường hợp không thể giải quyết bằng thương lượng, tranh chấp sẽ được giải quyết theo quy định pháp luật Việt Nam tại cơ quan có thẩm quyền.
+
+# **16\. HIỆU LỰC VÀ CẬP NHẬT ĐIỀU KHOẢN**
+
+**16.1** Điều khoản sử dụng này có hiệu lực kể từ ngày được công bố hoặc từ thời điểm được xác định trong thông báo cập nhật.
+
+**16.2** Khi Điều khoản được cập nhật, chúng tôi sẽ đăng tải phiên bản mới trên website và/hoặc thông báo thông qua email, hệ thống quản lý dịch vụ hoặc phương thức phù hợp.
+
+**16.3** Việc Khách Hàng tiếp tục sử dụng dịch vụ sau thời điểm Điều khoản mới có hiệu lực được hiểu là Khách Hàng đã xem xét và chấp nhận Điều khoản cập nhật, trừ trường hợp pháp luật hoặc hợp đồng giữa hai bên có quy định khác.
+
+**16.4** Phiên bản Điều khoản có hiệu lực tại thời điểm phát sinh sự kiện sẽ được sử dụng làm căn cứ xem xét quyền và nghĩa vụ của các bên, trừ khi Hợp đồng có quy định khác.
+
+# **17\. QUY ĐỊNH CHUNG**
+
+**17.1** Nếu một phần của Điều khoản này bị xác định là vô hiệu hoặc không thể thực thi theo quy định pháp luật, các phần còn lại vẫn giữ nguyên hiệu lực.
+
+**17.2** Việc chúng tôi không thực hiện ngay một quyền theo Điều khoản này không được hiểu là từ bỏ quyền đó.
+
+**17.3** Các quy định tại website, chính sách riêng của sản phẩm, bảng giá, chương trình khuyến mại, quy trình hỗ trợ và Hợp đồng/Phụ lục hợp đồng là một phần của thỏa thuận cung cấp dịch vụ trong phạm vi áp dụng tương ứng.
+
+**17.4** Trong trường hợp có mâu thuẫn giữa Điều khoản sử dụng và Hợp đồng/Phụ lục hợp đồng được ký kết giữa hai bên, nội dung của Hợp đồng/Phụ lục hợp đồng được ưu tiên áp dụng trong phạm vi nội dung được thỏa thuận riêng.
+
+Chúng tôi hướng tới việc cung cấp dịch vụ ổn định, minh bạch và an toàn cho Khách Hàng. Việc tuân thủ Điều khoản sử dụng giúp bảo vệ không chỉ chúng tôi mà còn bảo vệ chính hệ thống, dữ liệu và quyền lợi của Khách Hàng trong quá trình sử dụng dịch vụ.
+
+Quý Khách vui lòng thường xuyên theo dõi thông báo từ chúng tôi để cập nhật các chính sách, điều khoản hoặc thay đổi liên quan đến dịch vụ, đảm bảo luôn thực hiện đúng theo các điều khoản quy định sử dụng dịch vụ của chúng tôi.
