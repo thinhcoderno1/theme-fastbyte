@@ -3,10 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, Mail, UserPlus, LogIn, LifeBuoy } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
-import { getAssetBaseUrl } from '@/lib/env';
 
 export function TopBar() {
-  const logoUrl = new URL('/wp-content/uploads/2023/11/logo-thuevpsgiare-1.png', `${getAssetBaseUrl()}/`).toString();
   return (
     <div className="relative z-40 bg-brand-700 text-[12.5px] text-white shadow-[0_1px_0_rgba(255,255,255,0.12)]">
       <Container className="flex min-h-[50px] max-w-[1240px] items-center justify-between lg:min-h-[52px]">
@@ -17,7 +15,7 @@ export function TopBar() {
         >
           <span className="relative block h-[38px] w-[134px] sm:w-[145px] lg:h-[40px] lg:w-[154px]">
             <Image
-              src={logoUrl}
+              src="/images/logo.png"
               alt="Fast Byte - Thuê VPS Giá Rẻ"
               fill
               sizes="(min-width: 1024px) 154px, (min-width: 640px) 145px, 134px"

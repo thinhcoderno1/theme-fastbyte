@@ -181,16 +181,11 @@ export const VPS_PLANS: VpsPlan[] = [
   },
 ];
 
-const publicAssetBaseUrl = process.env.NEXT_PUBLIC_ASSET_BASE_URL?.replace(/\/+$/, '');
-if (!publicAssetBaseUrl) {
-  throw new Error('Thiếu NEXT_PUBLIC_ASSET_BASE_URL. Hãy sao chép .env.example thành .env.local.');
-}
-
 export const BENCHMARK_ITEMS: BenchmarkItem[] = [
   {
     id: 'bench-sysinfo',
     title: 'System Information',
-    imageUrl: `${publicAssetBaseUrl}/wp-content/uploads/2026/08/system-information.png`,
+    imageUrl: '/images/benchmark/system-information.jpg',
     metricLabel: 'Hạ tầng CPU',
     metricValue: 'Intel® Xeon® Gold',
     summary: 'Cấu hình phần cứng máy chủ vật lý doanh nghiệp với ảo hóa KVM chuẩn quốc tế.',
@@ -203,7 +198,7 @@ export const BENCHMARK_ITEMS: BenchmarkItem[] = [
   {
     id: 'bench-dd',
     title: 'Tốc độ Đọc/Ghi Ổ Đĩa (DD Test)',
-    imageUrl: `${publicAssetBaseUrl}/wp-content/uploads/2026/08/DD-information.png`,
+    imageUrl: '/images/benchmark/DD-information.jpg',
     metricLabel: 'Tốc độ I/O đĩa',
     metricValue: '1.5+ GB/s',
     summary: 'Ổ cứng Enterprise NVMe U.2 mang lại tốc độ truy xuất siêu tốc, gấp 5–7 lần SSD SATA thông thường.',
@@ -216,7 +211,7 @@ export const BENCHMARK_ITEMS: BenchmarkItem[] = [
   {
     id: 'bench-speedtest',
     title: 'Kiểm tra Băng thông & Độ trễ (Speedtest)',
-    imageUrl: `${publicAssetBaseUrl}/wp-content/uploads/2026/08/speedtest-information.png`,
+    imageUrl: '/images/benchmark/speedtest-information.jpg',
     metricLabel: 'Độ trễ tại VN',
     metricValue: '1-20ms Ping',
     summary: 'Băng thông cổng mạng 100-200 Mbps không giới hạn lưu lượng, kết nối trực tiếp các nhà mạng lớn VNPT, Viettel, FPT.',
