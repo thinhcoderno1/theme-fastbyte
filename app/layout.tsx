@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Be_Vietnam_Pro } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { TopBar } from '@/components/layout/TopBar';
 import { Header } from '@/components/layout/Header';
@@ -113,6 +114,16 @@ export default function RootLayout({
   return (
     <html lang="vi" className={`${inter.variable} ${beVietnamPro.variable}`}>
       <body className="min-h-screen flex flex-col bg-surface text-ink-500 font-body selection:bg-brand-100 selection:text-brand-900">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-QX7BWKRN1Z"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-QX7BWKRN1Z');`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
