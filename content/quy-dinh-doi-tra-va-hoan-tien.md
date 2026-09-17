@@ -12,10 +12,6 @@ Nếu quý khách đã thanh toán nhưng không nhận được thông tin sả
 Nếu sản phẩm được bàn giao không đúng với thông tin mô tả chi tiết được công bố trên website của chúng tôi.**
 **
 
-**1.3 Lỗi hoặc không ổn định của dịch vụ:**
-
-Nếu sản phẩm dịch vụ gặp lỗi hoặc không ổn định với tần suất lên đến 05 lần/ngày và quý khách có bằng chứng cung cấp qua ticket cho phòng kỹ thuật.
-
 **2. Quy trình hoàn tiền**
 
 **Bước 1:** Khách hàng sử dụng email đăng ký dịch vụ gửi ticket thông tin xác nhận việc hoàn tiền, lý do hoàn tiền, cung cấp các thông tin về dịch vụ cần hoàn tiền.**
