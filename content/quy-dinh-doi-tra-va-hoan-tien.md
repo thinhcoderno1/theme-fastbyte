@@ -24,4 +24,4 @@ Nếu sản phẩm được bàn giao không đúng với thông tin mô tả ch
 
 **3. Thời gian hoàn tiền**
 
-Chúng tôi giải quyết hoàn tiền trong vòng 30 ngày kể từ ngày nhận được yêu cầu.
+Chúng tôi giải quyết hoàn tiền trong vòng 30 ngày (Không tính Thứ 7, Chủ Nhật và Lễ Tết) kể từ ngày nhận được yêu cầu.
