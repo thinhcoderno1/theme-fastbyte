@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Inter, Be_Vietnam_Pro } from 'next/font/google';
-import Script from 'next/script';
 import './globals.css';
 import { TopBar } from '@/components/layout/TopBar';
 import { Header } from '@/components/layout/Header';
@@ -113,17 +112,23 @@ export default function RootLayout({
 
   return (
     <html lang="vi" className={`${inter.variable} ${beVietnamPro.variable}`}>
-      <body className="min-h-screen flex flex-col bg-surface text-ink-500 font-body selection:bg-brand-100 selection:text-brand-900">
-        <Script
+      <head>
+        {/* eslint-disable-next-line @next/next/next-script-for-ga -- Search Console requires the standard Google tag in the initial HTML head. */}
+        <script
+          async
           src="https://www.googletagmanager.com/gtag/js?id=G-QX7BWKRN1Z"
-          strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
+        <script
+          id="google-analytics"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-QX7BWKRN1Z');`}
-        </Script>
+gtag('config', 'G-QX7BWKRN1Z');`,
+          }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col bg-surface text-ink-500 font-body selection:bg-brand-100 selection:text-brand-900">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
