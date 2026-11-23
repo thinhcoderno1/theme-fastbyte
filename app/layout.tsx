@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { FloatingContact } from '@/components/layout/FloatingContact';
 import { getAssetBaseUrl, getSiteUrl, isIndexingAllowed } from '@/lib/env';
+import { SITE_METADATA } from '@/lib/site-metadata';
 
 const inter = Inter({
   subsets: ['latin', 'vietnamese'],
@@ -27,13 +28,13 @@ const ogImageUrl = new URL('/og-image.png', `${siteUrl}/`).toString();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Thuê VPS Giá Rẻ Chỉ Từ 59.000đ/Tháng | VPS Gold NVMe – Fast Byte',
-  description: 'Dịch vụ thuê VPS giá rẻ chỉ từ 59k/tháng tại Việt Nam. Trang bị CPU Intel® Xeon® Gold, ổ cứng Enterprise SSD NVMe U.2 siêu tốc, ảo hóa KVM độc lập tài nguyên, Uptime 99.9%, hỗ trợ 24/7.',
+  title: SITE_METADATA.title,
+  description: SITE_METADATA.description,
   keywords: [
     'thuê vps giá rẻ',
     'vps nvme',
     'vps việt nam',
-    'vps gold',
+    'vps platinum',
     'vps giá rẻ',
     'thuê cloud vps',
     'fast byte',
@@ -58,8 +59,8 @@ export const metadata: Metadata = {
     locale: 'vi_VN',
     url: siteUrl,
     siteName: 'Fast Byte – Thuê VPS Giá Rẻ',
-    title: 'Thuê VPS Giá Rẻ Chỉ Từ 59.000đ/Tháng | VPS Gold NVMe – Fast Byte',
-    description: 'Hạ tầng CPU Intel Gold & Ổ cứng NVMe U.2 Enterprise tốc độ vượt trội. Đặt tại Datacenter Tier 3 Việt Nam, cam kết Uptime 99.9%, hỗ trợ kỹ thuật 24/7.',
+    title: SITE_METADATA.title,
+    description: SITE_METADATA.description,
     images: [
       {
         url: ogImageUrl,
@@ -71,8 +72,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Thuê VPS Giá Rẻ Chỉ Từ 59.000đ/Tháng | VPS Gold NVMe – Fast Byte',
-    description: 'Hạ tầng CPU Intel Gold & Ổ cứng NVMe U.2 Enterprise tốc độ vượt trội. Đặt tại Datacenter Tier 3 Việt Nam.',
+    title: SITE_METADATA.title,
+    description: SITE_METADATA.description,
     images: [ogImageUrl],
   },
   alternates: {

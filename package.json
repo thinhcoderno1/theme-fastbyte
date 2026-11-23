@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "node scripts/generate-sitemap-routes.mjs && next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:plans": "node --test scripts/test-platinum-deals.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

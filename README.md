@@ -18,6 +18,7 @@ npm run dev
 
 ```powershell
 npm run lint
+npm run test:plans
 npm run build
 ```
 
@@ -49,6 +50,16 @@ WORDPRESS_REVALIDATE_SECRET=replace-with-a-random-secret
 ```
 
 Ba biến `WORDPRESS_*` ở trên chỉ là cấu hình runtime của Next.js cho blog và webhook xóa cache. Chúng không khởi tạo WordPress, PHP hoặc database trong repository này.
+
+## Best Plans — VPS Platinum
+
+Homepage lấy các gói Platinum từ [portal Black Friday 2026](https://id.thuevpsgiare.vn/store/promo-blackfriday26) ở phía server, bao gồm tên, giá theo chu kỳ, toàn bộ thông số/quyền lợi và URL đăng ký. Next.js cache dữ liệu và trang chủ trong 900 giây; lượt truy cập sau thời hạn này kích hoạt cập nhật nền. Đây không phải tác vụ cron hoặc cập nhật trực tiếp trong tab đang mở.
+
+Tab **1 năm / 2 năm / 3 năm** hiển thị tổng tiền thực tế cho từng chu kỳ từ trang cấu hình của mỗi gói. Giá chu kỳ được cache theo URL sản phẩm trong 900 giây; liên kết đăng ký truyền `billingcycle=annually|biennially|triennially` để portal chọn sẵn chu kỳ. Không nhân giá năm để suy ra giá 2 hoặc 3 năm. Nếu không đọc được giá chu kỳ, chỉ dùng bản chụp của đúng sản phẩm khi giá năm hiện tại vẫn khớp; chu kỳ chưa có dữ liệu sẽ báo chưa có giá và khóa nút đăng ký.
+
+Trang bán hàng công khai hiện cung cấp HTML. API `GetProducts` của WHMCS [yêu cầu xác thực](https://developers.whmcs.com/api-reference/getproducts/), nên tích hợp hiện tại đọc HTML công khai và không cần API key. Nếu portal đổi cấu trúc HTML, cần cập nhật bộ đọc trong `lib/api.ts`. Khi kết nối lỗi hoặc dữ liệu không hợp lệ, website dùng bản chụp 6 gói Platinum đã đối chiếu ngày 23/11/2026 và ghi cảnh báo phía server; giá dự phòng có thể cũ nếu portal thay đổi trong thời gian lỗi.
+
+`npm run test:plans` kiểm tra dữ liệu portal mẫu, giá cả 3 chu kỳ, thay đổi giá/thông số/danh sách gói, redirect phiên riêng, thao tác tab bằng chuột/bàn phím, liên kết đặt hàng và các tình huống lỗi.
 
 ## Triển khai
 

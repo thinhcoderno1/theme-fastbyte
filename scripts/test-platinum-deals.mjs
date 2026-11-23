@@ -1,0 +1,263 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import { test } from 'node:test';
+import vm from 'node:vm';
+import ts from 'typescript';
+import * as React from 'react';
+import * as jsxRuntime from 'react/jsx-runtime';
+
+const portalUrl = 'https://id.thuevpsgiare.vn/store/promo-blackfriday26';
+const fixture = await readFile(new URL('./fixtures/platinum-store.html', import.meta.url), 'utf8');
+const cycleFixtures = JSON.parse(await readFile(new URL('./fixtures/platinum-cycles.json', import.meta.url), 'utf8'));
+const source = await readFile(new URL('../lib/api.ts', import.meta.url), 'utf8');
+const { outputText } = ts.transpileModule(source, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+});
+
+// Exercise the real server loader without booting Next.js or contacting the portal.
+function loadApi(fetchImplementation, fetchCycles = async (url) => {
+  const planNumber = String(url).match(/bf26-platinum-(\d+)/)?.[1];
+  const html = cycleFixtures[74 + Number(planNumber)];
+  return html ? new Response(html) : new Response('Unavailable', { status: 503 });
+}) {
+  const exports = {};
+  const warnings = [];
+  vm.runInNewContext(outputText, {
+    exports,
+    require(name) {
+      if (name === 'next/cache') return {
+        unstable_cache(fn, keys, options) {
+          assert.equal(options.revalidate, 900);
+          assert.ok(keys.includes('platinum-billing-cycles-v1'));
+          return fn;
+        },
+      };
+      assert.equal(name, 'server-only');
+      return {};
+    },
+    fetch: (url, options) => url === portalUrl || String(url).endsWith('/store/cloud-vps')
+      ? fetchImplementation(url, options)
+      : fetchCycles(url, options),
+    URL,
+    AbortSignal,
+    console: { warn: (message) => warnings.push(message) },
+  });
+  return { getDeals: exports.getPlatinumDeals, getCloudVps: exports.getCloudVps, warnings };
+}
+
+test('loads all six portal plans with annual totals, full benefits and correct order URLs', async () => {
+  const { getDeals, warnings } = loadApi(async (url, options) => {
+    assert.equal(url, portalUrl);
+    assert.equal(options.next.revalidate, 900);
+    assert.ok(options.signal instanceof AbortSignal);
+    return new Response(fixture);
+  });
+  const deals = await getDeals();
+  assert.equal(deals.length, 6);
+  assert.deepEqual(Array.from(deals, (deal) => deal.priceMonthly), [799000, 1199000, 1634000, 2722000, 4799000, 8699000]);
+  const expectedTotals = [
+    [799000, 1438200, 2037450], [1199000, 2158200, 3057450],
+    [1634000, 2941200, 4166700], [2722000, 4899600, 6941100],
+    [4799000, 8638200, 12237450], [8699000, 15658200, 22182450],
+  ];
+  for (const [index, deal] of deals.entries()) {
+    assert.equal(deal.id, `deal-${75 + index}`);
+    assert.equal(deal.name, `BF26 PLATINUM ${index + 1}`);
+    assert.equal(deal.billingCycle, '1 năm');
+    assert.equal(deal.orderUrl, `${portalUrl}/bf26-platinum-${index + 1}`);
+    assert.equal(deal.features.length, 10);
+    assert.ok(deal.features.includes('200 Mbps Net Port'));
+    assert.ok(deal.features.includes('Anti DDoS 50Gbps'));
+    assert.ok(deal.features.includes('Gia hạn giữ nguyên giá'));
+    assert.deepEqual(Array.from(deal.billingCycles, (cycle) => cycle.total), expectedTotals[index]);
+    assert.deepEqual(Array.from(deal.billingCycles, (cycle) => cycle.cycle), ['annually', 'biennially', 'triennially']);
+  }
+  assert.equal(warnings.length, 0);
+});
+
+test('reflects changed prices, features, names and added or removed Platinum plans', async () => {
+  const firstCard = fixture.match(/<div class="product clearfix" id="product75">[\s\S]*?<\/footer>\s*<\/div>/)[0];
+  const updatedCard = firstCard.replaceAll('product75', 'product99')
+    .replace('799,000 đ', '899,000 đ')
+    .replace('BF26 PLATINUM 1', 'BF26 PLATINUM 7')
+    .replace('bf26-platinum-1', 'bf26-platinum-7')
+    .replace('200 Mbps', '500 Mbps');
+  const { getDeals, warnings } = loadApi(async () => new Response(updatedCard));
+  const deals = await getDeals();
+  assert.equal(deals.length, 1);
+  assert.equal(deals[0].id, 'deal-99');
+  assert.equal(deals[0].name, 'BF26 PLATINUM 7');
+  assert.equal(deals[0].priceMonthly, 899000);
+  assert.equal(deals[0].orderUrl, `${portalUrl}/bf26-platinum-7`);
+  assert.ok(deals[0].features.includes('500 Mbps Net Port'));
+  assert.equal(deals[0].billingCycles.length, 1);
+  assert.equal(deals[0].billingCycles[0].total, 899000);
+  assert.equal(warnings.length, 1);
+});
+
+test('excludes other product families from Best Plans', async () => {
+  const { getDeals } = loadApi(async () => new Response(fixture.replace('BF26 PLATINUM 1', 'BF26 GOLD 1')));
+  assert.equal((await getDeals()).length, 5);
+});
+
+test('uses the verified Platinum snapshot for network, HTTP and malformed-data failures', async (t) => {
+  const scenarios = {
+    network: async () => { throw new Error('Network unavailable'); },
+    http: async () => new Response('Unavailable', { status: 503 }),
+    challenge: async () => new Response('<html>Please wait</html>'),
+    'missing cycle': async () => new Response(fixture.replaceAll('1 năm', '')),
+    'missing CPU': async () => new Response(fixture.replaceAll('CPU Intel Xeon Platinum', 'Processor')),
+    'invalid price': async () => new Response(fixture.replace('799,000 đ', '0 đ')),
+    'external order link': async () => new Response(fixture.replace('href="/store/promo-blackfriday26/bf26-platinum-1"', 'href="https://example.com/checkout"')),
+  };
+  for (const [name, fetchImplementation] of Object.entries(scenarios)) {
+    await t.test(name, async () => {
+      const { getDeals, warnings } = loadApi(fetchImplementation);
+      const deals = await getDeals();
+      assert.equal(deals.length, 6);
+      assert.equal(deals[0].name, 'BF26 PLATINUM 1');
+      assert.equal(deals[0].priceMonthly, 799000);
+      assert.equal(deals[5].priceMonthly, 8699000);
+      assert.equal(deals[0].billingCycle, '1 năm');
+      assert.equal(deals[0].orderUrl, `${portalUrl}/bf26-platinum-1`);
+      assert.equal(warnings.length, 1);
+      assert.ok(deals.every((deal) => deal.features.includes('Anti DDoS 50Gbps')));
+      assert.equal(deals[0].billingCycles[1].total, 1438200);
+      assert.equal(deals[5].billingCycles[2].total, 22182450);
+    });
+  }
+});
+
+test('follows a product redirect with its own cookie to retrieve cycle prices', async () => {
+  const { getDeals } = loadApi(async () => new Response(fixture), async (url, options) => {
+    if (options.redirect === 'manual') {
+      const number = Number(String(url).match(/platinum-(\d+)/)[1]);
+      return new Response(null, {
+        status: 302,
+        headers: { Location: `/cart.php?a=confproduct&i=${number}`, 'Set-Cookie': `WHMCS=test-${number}; path=/; HttpOnly` },
+      });
+    }
+    const number = Number(new URL(url).searchParams.get('i'));
+    assert.equal(options.headers.Cookie, `WHMCS=test-${number}`);
+    return new Response(cycleFixtures[74 + number]);
+  });
+  assert.equal((await getDeals())[0].billingCycles[2].total, 2037450);
+});
+
+test('uses current multi-year prices and respects a cycle removed from the portal', async () => {
+  const changed = cycleFixtures[75].replace('1,438,200', '1,500,000')
+    .replace(/<option value="triennially">[\s\S]*?<\/option>/, '');
+  const { getDeals, warnings } = loadApi(async () => new Response(fixture), async () => new Response(changed));
+  const deal = (await getDeals())[0];
+  assert.deepEqual(Array.from(deal.billingCycles, (cycle) => cycle.total), [799000, 1500000]);
+  assert.equal(deal.billingCycles.some((cycle) => cycle.cycle === 'triennially'), false);
+  assert.equal(warnings.length, 0);
+});
+
+test('does not reuse stale multi-year snapshot prices if the annual price changes', async () => {
+  const { getDeals } = loadApi(
+    async () => new Response(fixture.replace('799,000 đ', '899,000 đ')),
+    async () => new Response('Unavailable', { status: 503 }),
+  );
+  const deals = await getDeals();
+  assert.equal(deals[0].billingCycles.length, 1);
+  assert.equal(deals[0].billingCycles[0].total, 899000);
+  assert.equal(deals[1].billingCycles[2].total, 3057450);
+});
+
+test('keeps Cloud VPS fallback cycles finite after adding three-year support', async () => {
+  const { getCloudVps } = loadApi(async () => { throw new Error('Offline'); });
+  const plans = await getCloudVps();
+  assert.equal(plans.length, 12);
+  assert.ok(plans.every((plan) => plan.billingCycles.length === 5 && plan.billingCycles.every((cycle) => Number.isFinite(cycle.total))));
+});
+
+const pricingExports = {};
+const pricingSource = await readFile(new URL('../lib/platinum-pricing.ts', import.meta.url), 'utf8');
+vm.runInNewContext(ts.transpileModule(pricingSource, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS },
+}).outputText, { exports: pricingExports, URL });
+
+test('order URLs preserve query parameters and select the requested portal cycle', () => {
+  const url = new URL(pricingExports.getPlatinumOrderUrl(`${portalUrl}/bf26-platinum-1?currency=1&billingcycle=annually`, 'triennially'));
+  assert.equal(url.searchParams.get('currency'), '1');
+  assert.equal(url.searchParams.get('billingcycle'), 'triennially');
+  assert.equal(url.searchParams.getAll('billingcycle').length, 1);
+});
+
+// Exercise the actual tab handlers and resulting React tree without browser APIs.
+const componentSource = await readFile(new URL('../components/sections/HotDeals.tsx', import.meta.url), 'utf8');
+const componentCode = ts.transpileModule(componentSource, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
+}).outputText;
+
+function setupTabs(deals) {
+  let selected = 'annually';
+  const exports = {};
+  vm.runInNewContext(componentCode, {
+    exports,
+    Intl,
+    require(name) {
+      if (name === 'react') return { ...React, useState: () => [selected, (value) => { selected = value; }], useRef: () => ({ current: [] }) };
+      if (name === 'react/jsx-runtime') return jsxRuntime;
+      if (name === '@/lib/platinum-pricing') return pricingExports;
+      return new Proxy({}, { get: (_, key) => String(key) });
+    },
+  });
+  function render() {
+    const nodes = [];
+    function visit(node) {
+      if (Array.isArray(node)) { node.forEach(visit); return; }
+      if (!node || typeof node !== 'object' || !node.props) return;
+      nodes.push(node);
+      visit(node.props.children);
+    }
+    visit(exports.HotDeals({ deals }));
+    return nodes;
+  }
+  return { render };
+}
+
+test('clicking each tab changes all six prices, cycle labels and registration links', async () => {
+  const { getDeals } = loadApi(async () => new Response(fixture));
+  const deals = await getDeals();
+  const { render } = setupTabs(deals);
+  for (const [index, key] of ['annually', 'biennially', 'triennially'].entries()) {
+    render().find((node) => node.props.id === `platinum-tab-${key}`).props.onClick();
+    const nodes = render();
+    const tabs = nodes.filter((node) => node.props.role === 'tab');
+    assert.equal(tabs.filter((tab) => tab.props['aria-selected']).length, 1);
+    assert.equal(tabs[index].props.tabIndex, 0);
+    assert.equal(nodes.find((node) => node.props.role === 'tabpanel').props['aria-labelledby'], `platinum-tab-${key}`);
+    const links = nodes.filter((node) => node.props.href);
+    assert.equal(links.length, 6);
+    for (const [dealIndex, link] of links.entries()) {
+      assert.equal(new URL(link.props.href).searchParams.get('billingcycle'), key);
+      const total = new Intl.NumberFormat('vi-VN').format(deals[dealIndex].billingCycles[index].total) + 'đ';
+      assert.ok(nodes.some((node) => node.props.children === total));
+    }
+  }
+});
+
+test('tabs support arrow keys, Home and End with one active tab', () => {
+  const { render } = setupTabs([]);
+  for (const [key, selected] of [['ArrowLeft', 'triennially'], ['ArrowRight', 'annually'], ['End', 'triennially'], ['Home', 'annually']]) {
+    const tab = render().find((node) => node.props.role === 'tab' && node.props['aria-selected']);
+    let prevented = false;
+    tab.props.onKeyDown({ key, preventDefault() { prevented = true; } });
+    assert.equal(prevented, true);
+    assert.equal(render().find((node) => node.props.role === 'tab' && node.props['aria-selected']).props.id, `platinum-tab-${selected}`);
+  }
+});
+
+test('an unavailable cycle shows no annual price or registration link', async () => {
+  const { getDeals } = loadApi(async () => new Response(fixture));
+  const deals = await getDeals();
+  deals[0].billingCycles = deals[0].billingCycles.slice(0, 1);
+  const { render } = setupTabs(deals);
+  render().find((node) => node.props.id === 'platinum-tab-triennially').props.onClick();
+  const nodes = render();
+  assert.equal(nodes.filter((node) => node.props.href).length, 5);
+  assert.ok(nodes.some((node) => node.props.disabled === true && !node.props.href));
+  assert.ok(!nodes.some((node) => node.props.children === '799.000đ'));
+});

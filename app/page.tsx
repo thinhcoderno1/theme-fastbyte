@@ -1,5 +1,5 @@
 import React from 'react';
-import { getSpecialDeals, getCloudVps } from '@/lib/api';
+import { getPlatinumDeals, getCloudVps } from '@/lib/api';
 import { Hero } from '@/components/sections/Hero';
 import { HotDeals } from '@/components/sections/HotDeals';
 import { Pricing } from '@/components/sections/Pricing';
@@ -13,24 +13,30 @@ import { Partners } from '@/components/sections/Partners';
 import { Faqs } from '@/components/sections/Faqs';
 import { InfoSection } from '@/components/sections/InfoSection';
 import { getAssetBaseUrl } from '@/lib/env';
+import { getPlatinumCyclePrice } from '@/lib/platinum-pricing';
+import { SITE_METADATA } from '@/lib/site-metadata';
 
 export const revalidate = 900; // Refresh portal pricing every 15 minutes
 
 export default async function HomePage() {
-  // Fetch real data with fallback mock
+  // Fetch portal pricing with verified snapshots as a fallback.
   const [deals, plans] = await Promise.all([
-    getSpecialDeals(),
+    getPlatinumDeals(),
     getCloudVps(),
   ]);
+  const annualPlatinumPrices = deals
+    .map((deal) => getPlatinumCyclePrice(deal, 'annually')?.total)
+    .filter((price): price is number => typeof price === 'number' && Number.isFinite(price) && price > 0);
+  const platinumStartingPrice = annualPlatinumPrices.length > 0 ? Math.min(...annualPlatinumPrices) : undefined;
   const logoUrl = new URL('/wp-content/uploads/2023/11/logo-thuevpsgiare-1.png', `${getAssetBaseUrl()}/`).toString();
 
   // Schema.org Product / Offer Catalog JSON-LD
   const productCatalogSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: 'Dịch Vụ Thuê VPS Giá Rẻ - Fast Byte',
+    name: SITE_METADATA.title,
     image: logoUrl,
-    description: 'Dịch vụ thuê máy chủ ảo VPS giá rẻ tại Việt Nam sử dụng CPU Intel Xeon Gold, ổ cứng SSD NVMe U.2 Enterprise, ảo hóa KVM 100% tài nguyên độc lập.',
+    description: SITE_METADATA.description,
     brand: {
       '@type': 'Brand',
       name: 'Fast Byte',
@@ -61,7 +67,7 @@ export default async function HomePage() {
       />
 
       {/* 1. Hero Section */}
-      <Hero />
+      <Hero startingPrice={platinumStartingPrice} />
 
       {/* 2. Hot Deals Section */}
       <HotDeals deals={deals} />

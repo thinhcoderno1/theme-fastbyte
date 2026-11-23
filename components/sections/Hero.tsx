@@ -7,12 +7,16 @@ import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 
-export function Hero() {
+interface HeroProps {
+  startingPrice?: number;
+}
+
+export function Hero({ startingPrice }: HeroProps) {
   const highlights = [
-    'Intel® Xeon® Gold',
-    'SSD NVMe U.2',
-    'Datacenter VN',
-    'Uptime 99.9%',
+    'Intel Xeon Platinum',
+    'NVMe U.2',
+    'AntiDDoS 50Gbps',
+    'Support 24/7',
   ];
 
   return (
@@ -41,7 +45,7 @@ export function Hero() {
                 icon={<Zap strokeWidth={2} size={14} className="text-accent-400" />}
                 className="font-medium"
               >
-                VPS Gold NVMe Tốc Độ Cao
+                Black Friday 2026 · VPS Platinum
               </Badge>
             </motion.div>
 
@@ -52,7 +56,7 @@ export function Hero() {
               transition={{ duration: 0.25, delay: 0.05, ease: 'easeOut' }}
               className="text-white font-extrabold tracking-tight text-balance mb-4 leading-[1.08]"
             >
-              Thuê VPS Giá Rẻ
+              Thuê VPS Platinum Giá Rẻ
             </motion.h1>
 
             {/* Subheading with Accent Gold */}
@@ -62,10 +66,16 @@ export function Hero() {
               transition={{ duration: 0.25, delay: 0.1, ease: 'easeOut' }}
               className="text-[19px] md:text-[22px] font-heading font-semibold text-white/95 mb-4"
             >
-              Chỉ Từ{' '}
-              <span className="text-accent-400 font-bold underline decoration-accent-400/40 decoration-2 underline-offset-4">
-                49.000đ/Tháng
-              </span>
+              {startingPrice !== undefined ? (
+                <>
+                  Chỉ từ{' '}
+                  <span className="text-accent-400 font-bold underline decoration-accent-400/40 decoration-2 underline-offset-4">
+                    {Math.floor(startingPrice / 12 / 1000)}K/Tháng
+                  </span>
+                </>
+              ) : (
+                'Ưu đãi cho chu kỳ 1 năm, 2 năm và 3 năm'
+              )}
             </motion.p>
 
             {/* Sapo Description */}
@@ -75,7 +85,7 @@ export function Hero() {
               transition={{ duration: 0.25, delay: 0.15, ease: 'easeOut' }}
               className="text-[15px] md:text-[17px] text-white/85 leading-relaxed mb-8 max-w-xl text-balance"
             >
-              Hạ tầng máy chủ ảo độc lập trang bị vi xử lý <strong>Intel® Xeon® Gold</strong>, ổ cứng Enterprise <strong>NVMe U.2</strong> tốc độ vượt trội, đặt tại Datacenter chuẩn Tier 3 tại Việt Nam với Uptime 99.9% và hỗ trợ kỹ thuật 24/7.
+              VPS <strong>Intel Xeon Platinum</strong> kết hợp ổ cứng <strong>SSD NVMe U.2</strong>, cổng mạng <strong>200 Mbps</strong> và <strong>AntiDDoS 50Gbps</strong>. Khởi tạo tự động, toàn quyền quản trị và gia hạn giữ nguyên giá.
             </motion.p>
 
             {/* 2 CTA Buttons */}
@@ -86,14 +96,14 @@ export function Hero() {
               className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto"
             >
               <Button
-                href="#bang-gia"
+                href="#hot-deals"
                 variant="dark-primary"
                 size="lg"
                 className="w-full sm:w-auto"
                 icon={<ArrowRight strokeWidth={2} size={18} />}
                 iconPosition="right"
               >
-                Xem Bảng Giá
+                Xem Ưu Đãi Platinum
               </Button>
               <Button
                 href="tel:02873006198"
@@ -112,7 +122,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.25, delay: 0.25, ease: 'easeOut' }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-white/15 w-full"
+              className="grid w-full grid-cols-2 gap-x-3 gap-y-3 border-t border-white/15 pt-4 sm:grid-cols-[repeat(4,max-content)] sm:justify-between"
             >
               {highlights.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2 text-[13px] text-white/90">

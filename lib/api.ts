@@ -1,9 +1,10 @@
 import 'server-only';
 
+import { unstable_cache } from 'next/cache';
 import { BillingCycleKey, BillingCyclePrice, DealPlan, VpsPlan } from './types';
 
 const PORTAL_ORIGIN = 'https://id.thuevpsgiare.vn';
-const SPECIAL_DEALS_URL = `${PORTAL_ORIGIN}/store/special-deal-2025`;
+const PLATINUM_DEALS_URL = `${PORTAL_ORIGIN}/store/promo-blackfriday26`;
 const CLOUD_VPS_URL = `${PORTAL_ORIGIN}/store/cloud-vps`;
 
 const CYCLE_DEFINITIONS: Array<{ cycle: BillingCycleKey; label: string; months: number }> = [
@@ -12,6 +13,7 @@ const CYCLE_DEFINITIONS: Array<{ cycle: BillingCycleKey; label: string; months: 
   { cycle: 'semiannually', label: '6 tháng', months: 6 },
   { cycle: 'annually', label: '1 năm', months: 12 },
   { cycle: 'biennially', label: '2 năm', months: 24 },
+  { cycle: 'triennially', label: '3 năm', months: 36 },
 ];
 
 const CLOUD_CYCLE_FALLBACKS = [
@@ -30,10 +32,9 @@ const CLOUD_CYCLE_FALLBACKS = [
 ];
 
 function makeBillingCycles(totals: number[]): BillingCyclePrice[] {
-  return CYCLE_DEFINITIONS.map((definition, index) => ({
-    ...definition,
-    total: totals[index],
-  }));
+  return CYCLE_DEFINITIONS.flatMap((definition, index) => (
+    Number.isFinite(totals[index]) ? [{ ...definition, total: totals[index] }] : []
+  ));
 }
 
 interface PortalProduct {
@@ -45,30 +46,51 @@ interface PortalProduct {
   orderUrl: string;
 }
 
-// Verified against the portal on 2026-08-25. Used only when the upstream
+// Platinum snapshot verified against the portal on 2026-11-23. Used when the upstream
 // request times out, returns an error, or changes its HTML contract.
-const FALLBACK_SPECIAL_DEALS: DealPlan[] = [
-  ['56', 'Plan C1 - New Year', '2 CPU', '2 GB RAM', '30GB SSD NVMe U.2', 599000],
-  ['57', 'Plan C2 - New Year', '2 CPU', '4 GB RAM', '50GB SSD NVMe U.2', 899000],
-  ['58', 'Plan C3 - New Year', '4 CPU', '8 GB RAM', '80GB SSD NVMe U.2', 1234000],
-  ['59', 'Plan C4 - New Year', '6 CPU', '8 GB RAM', '120GB SSD NVMe U.2', 2222000],
-  ['60', 'Plan C5 - New Year', '8 CPU', '16 GB RAM', '180GB SSD NVMe U.2', 4199000],
-  ['61', 'Plan C6 - New Year', '16 CPU', '32 GB RAM', '280GB SSD NVMe U.2', 7999000],
-].map(([id, name, cpu, ram, disk, price], index) => ({
-  id: `deal-${id}`,
-  name: String(name),
-  badge: index === 1 ? 'Phổ biến nhất' : undefined,
-  isPopular: index === 1,
-  cpu: String(cpu),
-  ram: String(ram),
-  disk: String(disk),
-  bandwidth: '100 Mbps Net Port · Không giới hạn băng thông',
-  ipv4: '1 IPv4 Dùng Riêng',
-  priceMonthly: Number(price),
-  billingCycle: '1 năm',
-  orderUrl: `${SPECIAL_DEALS_URL}/plan-c${String(id === '56' ? 1 : Number(id) - 55)}`,
-  stockStatus: 'Tự động khởi tạo',
-}));
+const FALLBACK_PLATINUM_DEALS: DealPlan[] = [
+  ['75', 2, 2, 30, 799000, 1438200, 2037450],
+  ['76', 2, 4, 50, 1199000, 2158200, 3057450],
+  ['77', 4, 8, 80, 1634000, 2941200, 4166700],
+  ['78', 6, 8, 120, 2722000, 4899600, 6941100],
+  ['79', 8, 16, 180, 4799000, 8638200, 12237450],
+  ['80', 16, 32, 280, 8699000, 15658200, 22182450],
+].map(([id, cpu, ram, disk, price, biennialPrice, triennialPrice], index) => {
+  const features = [
+    `${cpu} CPU Intel Xeon Platinum`,
+    `${ram} GB RAM`,
+    `${disk}GB SSD NVMe U.2`,
+    '01 IPv4 Public',
+    '200 Mbps Net Port',
+    'Không giới hạn băng thông',
+    'Anti DDoS 50Gbps',
+    'Tự động khởi tạo',
+    'Full quyền quản trị',
+    'Gia hạn giữ nguyên giá',
+  ];
+
+  return {
+    id: `deal-${id}`,
+    name: `BF26 PLATINUM ${index + 1}`,
+    badge: index === 1 ? 'Phổ biến nhất' : undefined,
+    isPopular: index === 1,
+    cpu: features[0],
+    ram: features[1],
+    disk: features[2],
+    bandwidth: features.slice(4, 6).join(' · '),
+    ipv4: features[3],
+    priceMonthly: Number(price),
+    billingCycle: '1 năm',
+    orderUrl: `${PLATINUM_DEALS_URL}/bf26-platinum-${index + 1}`,
+    stockStatus: features[7],
+    features,
+    billingCycles: CYCLE_DEFINITIONS.filter((definition) => definition.months >= 12)
+      .map((definition, cycleIndex) => ({
+        ...definition,
+        total: Number([price, biennialPrice, triennialPrice][cycleIndex]),
+      })),
+  };
+});
 
 const FALLBACK_CLOUD_VPS: VpsPlan[] = [
   ['15', 'VPS SSD C1', '1 CPU', '1GB RAM', '20GB SSD NVMe U.2', 59000],
@@ -205,8 +227,9 @@ function parseBillingCycles(html: string): BillingCyclePrice[] {
   const prices = new Map<BillingCycleKey, number>();
   for (const option of select.matchAll(/<option\s+value="([^"]+)"[^>]*>\s*([\d.,]+)\s*(?:đ|₫)[\s\S]*?<\/option>/gi)) {
     const cycle = option[1] as BillingCycleKey;
-    if (CYCLE_DEFINITIONS.some((definition) => definition.cycle === cycle)) {
-      prices.set(cycle, parsePrice(option[2]));
+    const total = parsePrice(option[2]);
+    if (total > 0 && Number.isFinite(total) && CYCLE_DEFINITIONS.some((definition) => definition.cycle === cycle)) {
+      prices.set(cycle, total);
     }
   }
 
@@ -249,30 +272,75 @@ async function fetchProductBillingCycles(orderUrl: string): Promise<BillingCycle
   return cycles;
 }
 
-export async function getSpecialDeals(): Promise<DealPlan[]> {
-  try {
-    const products = await fetchPortalProducts(SPECIAL_DEALS_URL);
+// Cache parsed prices by product URL, rather than by the temporary WHMCS session
+// cookie used during the order-page redirect. No customer session is involved.
+const fetchPlatinumBillingCycles = unstable_cache(
+  async (orderUrl: string) => {
+    const cycles = (await fetchProductBillingCycles(orderUrl)).filter((cycle) => cycle.months >= 12);
+    if (cycles.length === 0) throw new Error('No annual Platinum billing cycles found');
+    return cycles;
+  },
+  ['platinum-billing-cycles-v1'],
+  { revalidate: 900 },
+);
 
-    return products.map((product, index) => ({
-      id: `deal-${product.id}`,
-      name: product.name,
-      badge: index === 1 ? 'Phổ biến nhất' : undefined,
-      isPopular: index === 1,
-      cpu: findFeature(product.features, /\bCPU\b/i, 'CPU theo cấu hình gói'),
-      ram: findFeature(product.features, /\bRAM\b/i, 'RAM theo cấu hình gói'),
-      disk: findFeature(product.features, /SSD|NVMe/i, 'SSD NVMe U.2'),
-      bandwidth: [
-        findFeature(product.features, /Net Port/i, '100 Mbps Net Port'),
-        findFeature(product.features, /băng thông/i, 'Không giới hạn băng thông'),
-      ].join(' · '),
-      ipv4: findFeature(product.features, /IPv4/i, '1 IPv4 Dùng Riêng'),
-      priceMonthly: product.price,
-      billingCycle: product.billingCycle,
-      orderUrl: product.orderUrl,
-      stockStatus: findFeature(product.features, /Tự động khởi tạo/i, ''),
+export async function getPlatinumDeals(): Promise<DealPlan[]> {
+  try {
+    // The public WHMCS storefront exposes current prices without API credentials.
+    // Keep this request server-side and share the 15-minute Next.js fetch cache.
+    const products = (await fetchPortalProducts(PLATINUM_DEALS_URL))
+      .filter((product) => /\bplatinum\b/i.test(product.name));
+
+    if (products.length === 0 || products.some((product) => (
+      !Number.isFinite(product.price) || product.price <= 0 || !product.billingCycle
+      || !product.features.some((feature) => /\bCPU\b/i.test(feature))
+      || !product.features.some((feature) => /\bRAM\b/i.test(feature))
+      || !product.features.some((feature) => /SSD|NVMe/i.test(feature))
+      || !product.orderUrl.startsWith(`${PLATINUM_DEALS_URL}/`)
+    ))) {
+      throw new Error('Portal returned incomplete Platinum product data');
+    }
+
+    return await Promise.all(products.map(async (product, index) => {
+      // Match a snapshot by product ID and current annual price. Never invent a
+      // multi-year price by multiplying the annual total or reusing another SKU.
+      const snapshot = FALLBACK_PLATINUM_DEALS.find((deal) => deal.id === `deal-${product.id}`);
+      let billingCycles: BillingCyclePrice[] = product.billingCycle === '1 năm' ? [{
+        cycle: 'annually', label: '1 năm', months: 12, total: product.price,
+      }] : [];
+      try {
+        billingCycles = await fetchPlatinumBillingCycles(product.orderUrl);
+      } catch {
+        if (product.billingCycle === '1 năm' && snapshot?.priceMonthly === product.price) {
+          billingCycles = snapshot.billingCycles ?? billingCycles;
+        }
+        console.warn(`[portal] Platinum billing cycles unavailable for product ${product.id}; using verified prices where available.`);
+      }
+
+      return {
+        id: `deal-${product.id}`,
+        name: product.name,
+        badge: index === 1 ? 'Phổ biến nhất' : undefined,
+        isPopular: index === 1,
+        cpu: findFeature(product.features, /\bCPU\b/i, 'CPU theo cấu hình gói'),
+        ram: findFeature(product.features, /\bRAM\b/i, 'RAM theo cấu hình gói'),
+        disk: findFeature(product.features, /SSD|NVMe/i, 'SSD NVMe U.2'),
+        bandwidth: [
+          findFeature(product.features, /Net Port/i, '100 Mbps Net Port'),
+          findFeature(product.features, /băng thông/i, 'Không giới hạn băng thông'),
+        ].join(' · '),
+        ipv4: findFeature(product.features, /IPv4/i, '1 IPv4 Dùng Riêng'),
+        priceMonthly: product.price,
+        billingCycle: product.billingCycle,
+        orderUrl: product.orderUrl,
+        stockStatus: findFeature(product.features, /Tự động khởi tạo/i, ''),
+        features: product.features,
+        billingCycles,
+      };
     }));
   } catch {
-    return FALLBACK_SPECIAL_DEALS;
+    console.warn('[portal] Platinum pricing unavailable; using the 2026-11-23 snapshot.');
+    return FALLBACK_PLATINUM_DEALS;
   }
 }
 

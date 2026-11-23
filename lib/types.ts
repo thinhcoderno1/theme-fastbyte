@@ -16,7 +16,7 @@ export interface VpsPlan {
   billingCycles?: BillingCyclePrice[];
 }
 
-export type BillingCycleKey = 'monthly' | 'quarterly' | 'semiannually' | 'annually' | 'biennially';
+export type BillingCycleKey = 'monthly' | 'quarterly' | 'semiannually' | 'annually' | 'biennially' | 'triennially';
 
 export interface BillingCyclePrice {
   cycle: BillingCycleKey;
@@ -35,12 +35,15 @@ export interface DealPlan {
   disk: string;
   bandwidth: string;
   ipv4: string;
+  /** Total for billingCycle in VND; the field name is kept for existing data. */
   priceMonthly: number;
   priceOriginal?: number;
   discountPercent?: number;
   billingCycle?: string;
   orderUrl: string;
   stockStatus?: string;
+  features?: string[];
+  billingCycles?: BillingCyclePrice[];
 }
 
 export interface Feedback {
