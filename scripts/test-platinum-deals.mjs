@@ -7,6 +7,8 @@ import * as React from 'react';
 import * as jsxRuntime from 'react/jsx-runtime';
 
 const portalUrl = 'https://id.thuevpsgiare.vn/store/promo-blackfriday26';
+const vpsLiteUrl = 'https://id.thuevpsgiare.vn/store/vps-gia-re';
+const whmcsApiUrl = 'https://id.thuevpsgiare.vn/includes/api.php';
 const fixture = await readFile(new URL('./fixtures/platinum-store.html', import.meta.url), 'utf8');
 const cycleFixtures = JSON.parse(await readFile(new URL('./fixtures/platinum-cycles.json', import.meta.url), 'utf8'));
 const source = await readFile(new URL('../lib/api.ts', import.meta.url), 'utf8');
@@ -19,7 +21,7 @@ function loadApi(fetchImplementation, fetchCycles = async (url) => {
   const planNumber = String(url).match(/bf26-platinum-(\d+)/)?.[1];
   const html = cycleFixtures[74 + Number(planNumber)];
   return html ? new Response(html) : new Response('Unavailable', { status: 503 });
-}) {
+}, env = {}) {
   const exports = {};
   const warnings = [];
   vm.runInNewContext(outputText, {
@@ -28,21 +30,23 @@ function loadApi(fetchImplementation, fetchCycles = async (url) => {
       if (name === 'next/cache') return {
         unstable_cache(fn, keys, options) {
           assert.equal(options.revalidate, 900);
-          assert.ok(keys.includes('platinum-billing-cycles-v1'));
+          assert.match(keys[0], /^(platinum-billing-cycles|vps-lite-api|vps-lite-billing-cycles)-v1$/);
           return fn;
         },
       };
       assert.equal(name, 'server-only');
       return {};
     },
-    fetch: (url, options) => url === portalUrl || String(url).endsWith('/store/cloud-vps')
+    fetch: (url, options) => [portalUrl, vpsLiteUrl, whmcsApiUrl].includes(url)
       ? fetchImplementation(url, options)
       : fetchCycles(url, options),
     URL,
+    URLSearchParams,
     AbortSignal,
+    process: { env },
     console: { warn: (message) => warnings.push(message) },
   });
-  return { getDeals: exports.getPlatinumDeals, getCloudVps: exports.getCloudVps, warnings };
+  return { getDeals: exports.getPlatinumDeals, getVpsLite: exports.getVpsLite, warnings };
 }
 
 test('loads all six portal plans with annual totals, full benefits and correct order URLs', async () => {
@@ -165,10 +169,102 @@ test('does not reuse stale multi-year snapshot prices if the annual price change
   assert.equal(deals[1].billingCycles[2].total, 3057450);
 });
 
-test('keeps Cloud VPS fallback cycles finite after adding three-year support', async () => {
-  const { getCloudVps } = loadApi(async () => { throw new Error('Offline'); });
-  const plans = await getCloudVps();
+const vpsLiteFeatures = '<ul><li>1 CPU</li><li>1GB RAM</li><li>20GB SSD NVMe U.2</li><li>1 IPv4 Public</li></ul>';
+
+function liteStoreCard(id, slug, name, monthly) {
+  return `<div class="product clearfix" id="product${id}">
+    <span id="product${id}-name">${name}</span>
+    ${vpsLiteFeatures}
+    <footer>
+      <div id="product${id}-price"><span class="price">${monthly} đ</span><br>1 tháng</div>
+      <a href="/store/vps-gia-re/${slug}" id="product${id}-order-button">Đăng ký</a>
+    </footer>
+  </div>`;
+}
+
+const whmcsEnv = {
+  WHMCS_API_IDENTIFIER: 'test-identifier',
+  WHMCS_API_SECRET: 'test-secret',
+  WHMCS_VPS_LITE_GROUP_ID: '23',
+};
+
+test('reads VPS Lite plans and their enabled VND cycles from the WHMCS API', async () => {
+  const orderUrl = `${vpsLiteUrl}/vps-lite-1`;
+  const { getVpsLite, warnings } = loadApi(async (url, options) => {
+    assert.equal(url, whmcsApiUrl);
+    assert.equal(options.method, 'POST');
+    assert.equal(options.cache, 'no-store');
+    assert.deepEqual(Object.fromEntries(options.body), {
+      action: 'GetProducts',
+      responsetype: 'json',
+      identifier: whmcsEnv.WHMCS_API_IDENTIFIER,
+      secret: whmcsEnv.WHMCS_API_SECRET,
+      gid: whmcsEnv.WHMCS_VPS_LITE_GROUP_ID,
+    });
+    return Response.json({
+      result: 'success',
+      products: { product: [{
+        pid: 81,
+        gid: 23,
+        name: 'VPS Lite 1',
+        'product-url': orderUrl,
+        description: vpsLiteFeatures,
+        pricing: {
+          VND: { monthly: '89000.00', quarterly: '229000.00', annually: '-1.00' },
+          USD: { monthly: '4.00', annually: '40.00' },
+        },
+      }] },
+    });
+  }, undefined, whmcsEnv);
+  const [plan] = await getVpsLite();
+  assert.equal(plan.id, 'vps-81');
+  assert.equal(plan.name, 'VPS Lite 1');
+  assert.equal(plan.orderUrl, orderUrl);
+  assert.equal(plan.priceMonthly, 89000);
+  assert.ok(plan.features.includes('20GB SSD NVMe U.2'));
+  assert.deepEqual(Array.from(plan.billingCycles, ({ cycle, total }) => [cycle, total]), [
+    ['monthly', 89000],
+    ['quarterly', 229000],
+  ]);
+  assert.equal(warnings.length, 0);
+});
+
+test('falls back to the live VPS Lite catalog when WHMCS rejects the credentials', async () => {
+  const calls = [];
+  const { getVpsLite, warnings } = loadApi(async (url) => {
+    calls.push(url);
+    if (url === whmcsApiUrl) return Response.json({ result: 'error' });
+    return new Response(liteStoreCard('99', 'vps-lite-99', 'VPS Lite 99', '90,000'));
+  }, async () => new Response(`
+    <select id="inputBillingcycle">
+      <option value="monthly">90,000 đ 1 tháng</option>
+      <option value="quarterly">250,000 đ 3 tháng</option>
+    </select>
+  `), whmcsEnv);
+  const [plan] = await getVpsLite();
+  assert.deepEqual(calls, [whmcsApiUrl, vpsLiteUrl]);
+  assert.equal(plan.orderUrl, `${vpsLiteUrl}/vps-lite-99`);
+  assert.deepEqual(Array.from(plan.billingCycles, (cycle) => cycle.total), [90000, 250000]);
+  assert.equal(warnings.length, 1);
+});
+
+test('matches VPS Lite cycle snapshots by product and monthly price', async () => {
+  const { getVpsLite } = loadApi(async () => new Response(
+    liteStoreCard('82', 'vps-lite-2', 'VPS Lite 2', '130,000')
+    + liteStoreCard('81', 'vps-lite-1', 'VPS Lite 1', '90,000'),
+  ), async () => new Response('Unavailable', { status: 503 }));
+  const [secondPlan, firstPlan] = await getVpsLite();
+  assert.deepEqual(Array.from(secondPlan.billingCycles, (cycle) => cycle.total), [130000, 330000, 549000, 959000, 1629000]);
+  assert.deepEqual(Array.from(firstPlan.billingCycles, (cycle) => cycle.total), [90000]);
+});
+
+test('uses the verified VPS Lite snapshot when the storefront is offline', async () => {
+  const { getVpsLite } = loadApi(async () => { throw new Error('Offline'); });
+  const plans = await getVpsLite();
   assert.equal(plans.length, 12);
+  assert.equal(plans[0].priceMonthly, 89000);
+  assert.equal(plans[11].priceMonthly, 3059000);
+  assert.ok(plans.every((plan) => plan.name.startsWith('VPS Lite ') && plan.orderUrl.startsWith(`${vpsLiteUrl}/`)));
   assert.ok(plans.every((plan) => plan.billingCycles.length === 5 && plan.billingCycles.every((cycle) => Number.isFinite(cycle.total))));
 });
 

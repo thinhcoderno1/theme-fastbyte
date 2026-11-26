@@ -6,13 +6,14 @@ import { BillingCyclePrice, VpsPlan } from '@/lib/types';
 
 interface PricingCardProps {
   plan: VpsPlan;
-  billingCycle: BillingCyclePrice;
+  billingCycle?: BillingCyclePrice;
 }
 
 const formatPrice = (amount: number) => new Intl.NumberFormat('vi-VN').format(amount) + 'đ';
 
 export function PricingCard({ plan, billingCycle }: PricingCardProps) {
-  const isMonthly = billingCycle.months === 1;
+  const orderUrl = new URL(plan.orderUrl);
+  if (billingCycle) orderUrl.searchParams.set('billingcycle', billingCycle.cycle);
 
   return (
     <article
@@ -36,15 +37,19 @@ export function PricingCard({ plan, billingCycle }: PricingCardProps) {
         {plan.name}
       </h3>
 
-      <div className="mb-7">
-        <div className="flex flex-wrap items-baseline gap-x-1.5">
-          <span className="font-heading text-[36px] font-extrabold tracking-tight text-brand-900">
-            {formatPrice(billingCycle.total)}
-          </span>
-          <span className="text-[14px] font-semibold text-ink-500">
-            /{isMonthly ? 'tháng' : billingCycle.label}
-          </span>
-        </div>
+      <div className="mb-7 flex flex-wrap items-baseline gap-x-1.5">
+        {billingCycle ? (
+          <>
+            <span className="font-heading text-[36px] font-extrabold tracking-tight text-brand-900">
+              {formatPrice(billingCycle.total)}
+            </span>
+            <span className="text-[14px] font-semibold text-ink-500">
+              /{billingCycle.months === 1 ? 'tháng' : billingCycle.label}
+            </span>
+          </>
+        ) : (
+          <span className="text-[14px] font-semibold text-ink-500">Chưa có giá cho chu kỳ này</span>
+        )}
       </div>
 
       <ul className="mb-8 space-y-3.5 text-[14px] text-ink-700">
@@ -59,8 +64,9 @@ export function PricingCard({ plan, billingCycle }: PricingCardProps) {
       </ul>
 
       <Button
-        href={plan.orderUrl}
-        target="_blank"
+        href={billingCycle ? orderUrl.toString() : undefined}
+        target={billingCycle ? '_blank' : undefined}
+        disabled={!billingCycle}
         variant="primary"
         size="lg"
         className="mt-auto h-[54px] w-full justify-center rounded-md"

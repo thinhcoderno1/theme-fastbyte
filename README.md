@@ -61,6 +61,12 @@ Trang bán hàng công khai hiện cung cấp HTML. API `GetProducts` của WHMC
 
 `npm run test:plans` kiểm tra dữ liệu portal mẫu, giá cả 3 chu kỳ, thay đổi giá/thông số/danh sách gói, redirect phiên riêng, thao tác tab bằng chuột/bàn phím, liên kết đặt hàng và các tình huống lỗi.
 
+## Bảng giá VPS Lite
+
+Bảng giá homepage đồng bộ tên gói, thông số, giá VND theo chu kỳ và liên kết đặt hàng của danh mục [VPS Giá Rẻ](https://id.thuevpsgiare.vn/store/vps-gia-re). Để dùng API WHMCS `GetProducts`, đặt biến môi trường phía máy chủ `WHMCS_API_IDENTIFIER`, `WHMCS_API_SECRET` và `WHMCS_VPS_LITE_GROUP_ID` với ID nhóm trong trang quản trị WHMCS. Cấp quyền `GetProducts` cho thông tin xác thực này.
+
+Khi chưa cấu hình API hoặc API gặp lỗi, ứng dụng đọc danh mục và chu kỳ thanh toán từ trang bán hàng công khai. Nếu portal không truy cập được, bảng giá dùng dữ liệu đối chiếu ngày 26/11/2026. Dữ liệu portal được cache 15 phút.
+
 ## Triển khai
 
 Có thể chạy trực tiếp bằng Node.js/PM2 hoặc dùng Docker Compose. Xem [DEPLOYMENT.md](./DEPLOYMENT.md) cho quy trình Docker chỉ gồm Next.js và Nginx.

@@ -5,7 +5,7 @@ import { BillingCycleKey, BillingCyclePrice, DealPlan, VpsPlan } from './types';
 
 const PORTAL_ORIGIN = 'https://id.thuevpsgiare.vn';
 const PLATINUM_DEALS_URL = `${PORTAL_ORIGIN}/store/promo-blackfriday26`;
-const CLOUD_VPS_URL = `${PORTAL_ORIGIN}/store/cloud-vps`;
+const VPS_LITE_URL = `${PORTAL_ORIGIN}/store/vps-gia-re`;
 
 const CYCLE_DEFINITIONS: Array<{ cycle: BillingCycleKey; label: string; months: number }> = [
   { cycle: 'monthly', label: '1 tháng', months: 1 },
@@ -15,27 +15,6 @@ const CYCLE_DEFINITIONS: Array<{ cycle: BillingCycleKey; label: string; months: 
   { cycle: 'biennially', label: '2 năm', months: 24 },
   { cycle: 'triennially', label: '3 năm', months: 36 },
 ];
-
-const CLOUD_CYCLE_FALLBACKS = [
-  [59000, 153000, 252000, 432000, 720000],
-  [87000, 222000, 366000, 636000, 1056000],
-  [118000, 303000, 498000, 852000, 1416000],
-  [180000, 459000, 756000, 1296000, 2160000],
-  [286000, 729000, 1206000, 2064000, 3432000],
-  [348000, 888000, 1464000, 2508000, 4176000],
-  [422000, 1077000, 1776000, 3048000, 5064000],
-  [596000, 1521000, 2508000, 4296000, 7152000],
-  [744000, 1899000, 3126000, 5364000, 8928000],
-  [992000, 2532000, 4170000, 7152000, 11904000],
-  [1488000, 3795000, 6252000, 10716000, 17856000],
-  [2038000, 5199000, 8562000, 14676000, 24456000],
-];
-
-function makeBillingCycles(totals: number[]): BillingCyclePrice[] {
-  return CYCLE_DEFINITIONS.flatMap((definition, index) => (
-    Number.isFinite(totals[index]) ? [{ ...definition, total: totals[index] }] : []
-  ));
-}
 
 interface PortalProduct {
   id: string;
@@ -92,45 +71,60 @@ const FALLBACK_PLATINUM_DEALS: DealPlan[] = [
   };
 });
 
-const FALLBACK_CLOUD_VPS: VpsPlan[] = [
-  ['15', 'VPS SSD C1', '1 CPU', '1GB RAM', '20GB SSD NVMe U.2', 59000],
-  ['16', 'VPS SSD C2', '1 CPU', '2 GB RAM', '20GB SSD NVMe U.2', 87000],
-  ['17', 'VPS SSD C3', '2 CPU', '2 GB RAM', '30GB SSD NVMe U.2', 118000],
-  ['18', 'VPS SSD C4', '2 CPU', '4 GB RAM', '50GB SSD NVMe U.2', 180000],
-  ['29', 'VPS SSD C5', '4 CPU', '6 GB RAM', '60GB SSD NVMe U.2', 286000],
-  ['30', 'VPS SSD C6', '4 CPU', '8 GB RAM', '80GB SSD NVMe U.2', 348000],
-  ['32', 'VPS SSD C7', '6 CPU', '8 GB RAM', '120GB SSD NVMe U.2', 422000],
-  ['33', 'VPS SSD C8', '8 CPU', '12 GB RAM', '160GB SSD NVMe U.2', 596000],
-  ['34', 'VPS SSD C9', '8 CPU', '16 GB RAM', '180GB SSD NVMe U.2', 744000],
-  ['35', 'VPS SSD C10', '10 CPU', '22 GB RAM', '240GB SSD NVMe U.2', 992000],
-  ['36', 'VPS SSD C11', '16 CPU', '32 GB RAM', '280GB SSD NVMe U.2', 1488000],
-  ['37', 'VPS SSD C12', '22 CPU', '48 GB RAM', '320GB SSD NVMe U.2', 2038000],
-].map(([id, name, cpu, ram, disk, price], index) => {
+// Catalog and checkout totals verified on 2026-11-26.
+const FALLBACK_VPS_LITE: VpsPlan[] = ([
+  ['81', 1, '1GB', 20, [89000, 229000, 379000, 649000, 1089000]],
+  ['82', 1, '2 GB', 20, [130000, 330000, 549000, 959000, 1629000]],
+  ['83', 2, '2 GB', 30, [170000, 460000, 749000, 1279000, 2129000]],
+  ['84', 2, '4 GB', 50, [270000, 689000, 1130000, 1949000, 3249000]],
+  ['85', 4, '6 GB', 60, [430000, 1099000, 1800000, 3099000, 5149000]],
+  ['86', 4, '8 GB', 80, [529000, 1330000, 2199000, 3769000, 6269000]],
+  ['87', 6, '8 GB', 120, [630000, 1600000, 2669000, 4579000, 7599000]],
+  ['88', 8, '12 GB', 160, [899000, 2280000, 3769000, 6449000, 10729000]],
+  ['89', 8, '16 GB', 180, [1110000, 2849000, 4689000, 8049000, 13399000]],
+  ['90', 10, '22 GB', 240, [1489000, 3799000, 6259000, 10729000, 17859000]],
+  ['91', 16, '32 GB', 280, [2239000, 5699000, 9379000, 16079000, 26784000]],
+  ['92', 22, '48 GB', 320, [3059000, 7799000, 12849000, 22019000, 36689000]],
+] as const).map(([id, cpu, ram, disk, totals], index) => {
   const features = [
-    String(cpu),
-    String(ram),
-    String(disk),
-    '1 IPv4 Dùng Riêng',
+    `${cpu} CPU`,
+    `${ram} RAM`,
+    `${disk}GB SSD NVMe U.2`,
+    '1 IPv4 Public',
     '100 Mbps Net Port',
     'Không giới hạn băng thông',
   ];
 
+  return makeVpsLitePlan({
+    id,
+    name: `VPS Lite ${index + 1}`,
+    orderUrl: `${VPS_LITE_URL}/vps-lite-${index + 1}`,
+    features,
+  }, totals.map((total, cycleIndex) => ({ ...CYCLE_DEFINITIONS[cycleIndex], total })));
+});
+
+function makeVpsLitePlan(
+  product: Pick<PortalProduct, 'id' | 'name' | 'orderUrl' | 'features'>,
+  billingCycles: BillingCyclePrice[],
+): VpsPlan {
+  const { id, name, orderUrl, features } = product;
+  const monthly = billingCycles.find((cycle) => cycle.cycle === 'monthly');
+  if (!monthly) throw new Error('VPS Lite product has no monthly price');
+
   return {
     id: `vps-${id}`,
-    name: String(name),
-    badge: index === 2 ? 'Phổ biến nhất' : undefined,
-    isPopular: index === 2,
-    cpu: String(cpu),
-    ram: String(ram),
-    disk: String(disk),
-    bandwidth: '100 Mbps Net Port · Không giới hạn băng thông',
-    ipv4: '1 IPv4 Dùng Riêng',
-    priceMonthly: Number(price),
-    orderUrl: `${CLOUD_VPS_URL}/vps-ssd-c${index + 1}`,
+    name,
+    orderUrl,
     features,
-    billingCycles: makeBillingCycles(CLOUD_CYCLE_FALLBACKS[index]),
+    cpu: findFeature(features, /\bCPU\b/i, ''),
+    ram: findFeature(features, /\bRAM\b/i, ''),
+    disk: findFeature(features, /SSD|NVMe/i, ''),
+    bandwidth: features.filter((feature) => /Net Port|băng thông/i.test(feature)).join(' · '),
+    ipv4: findFeature(features, /IPv4/i, ''),
+    priceMonthly: monthly.total,
+    billingCycles,
   };
-});
+}
 
 function decodeHtml(value: string): string {
   return value
@@ -154,6 +148,12 @@ function parsePrice(value: string): number {
   return Number(value.replace(/\D/g, ''));
 }
 
+function parseFeatures(html: string): string[] {
+  return [...new Set([...html.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)]
+    .map((feature) => cleanHtml(feature[1]))
+    .filter(Boolean))];
+}
+
 function parsePortalProducts(html: string): PortalProduct[] {
   const products: PortalProduct[] = [];
   const productPattern = /<div class="product clearfix" id="product(\d+)">([\s\S]*?)<\/footer>\s*<\/div>/gi;
@@ -164,9 +164,7 @@ function parsePortalProducts(html: string): PortalProduct[] {
     const pricing = block.match(new RegExp(`id="product${productId}-price"[^>]*>([\\s\\S]*?)<\\/div>`, 'i'));
     const orderLink = block.match(new RegExp(`href="([^"]+)"[^>]*id="product${productId}-order-button"`, 'i'));
     const price = pricing?.[1].match(/([\d.,]+)\s*(?:đ|₫)/i);
-    const features = [...block.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)]
-      .map((feature) => cleanHtml(feature[1]))
-      .filter(Boolean);
+    const features = parseFeatures(block);
 
     if (!name || !pricing || !orderLink || !price || features.length === 0) continue;
 
@@ -245,7 +243,7 @@ async function fetchProductBillingCycles(orderUrl: string): Promise<BillingCycle
   const initialResponse = await fetch(orderUrl, {
     headers: { Accept: 'text/html,application/xhtml+xml' },
     redirect: 'manual',
-    next: { revalidate: 900 },
+    cache: 'no-store',
     signal: AbortSignal.timeout(8000),
   });
 
@@ -254,13 +252,17 @@ async function fetchProductBillingCycles(orderUrl: string): Promise<BillingCycle
     const location = initialResponse.headers.get('location');
     if (!location) throw new Error('WHMCS product redirect is missing a location');
 
+    const checkoutUrl = new URL(location, orderUrl);
+    if (checkoutUrl.origin !== PORTAL_ORIGIN) throw new Error('Unexpected WHMCS checkout origin');
+
     const cookie = extractCookieHeader(initialResponse.headers.get('set-cookie'));
-    response = await fetch(new URL(location, orderUrl), {
+    response = await fetch(checkoutUrl, {
       headers: {
         Accept: 'text/html,application/xhtml+xml',
         ...(cookie ? { Cookie: cookie } : {}),
       },
-      next: { revalidate: 900 },
+      redirect: 'error',
+      cache: 'no-store',
       signal: AbortSignal.timeout(8000),
     });
   }
@@ -344,40 +346,113 @@ export async function getPlatinumDeals(): Promise<DealPlan[]> {
   }
 }
 
-export async function getCloudVps(): Promise<VpsPlan[]> {
-  try {
-    const products = await fetchPortalProducts(CLOUD_VPS_URL);
+interface WhmcsProduct {
+  pid: string | number;
+  gid: string | number;
+  name: string;
+  description: string;
+  'product-url'?: string;
+  product_url?: string;
+  pricing?: { VND?: Partial<Record<BillingCycleKey, string | number>> };
+}
 
-    return Promise.all(products.map(async (product, index) => {
-      let billingCycles = CLOUD_CYCLE_FALLBACKS[index]
-        ? makeBillingCycles(CLOUD_CYCLE_FALLBACKS[index])
-        : [{ cycle: 'monthly' as const, label: '1 tháng', months: 1, total: product.price }];
-      try {
-        billingCycles = await fetchProductBillingCycles(product.orderUrl);
-      } catch {
-        // Keep the verified cycle snapshot for this product only.
+const fetchVpsLiteApi = unstable_cache(
+  async (groupId: string): Promise<VpsPlan[]> => {
+    const response = await fetch(`${PORTAL_ORIGIN}/includes/api.php`, {
+      method: 'POST',
+      body: new URLSearchParams({
+        action: 'GetProducts',
+        responsetype: 'json',
+        identifier: process.env.WHMCS_API_IDENTIFIER!,
+        secret: process.env.WHMCS_API_SECRET!,
+        gid: groupId,
+      }),
+      headers: { Accept: 'application/json' },
+      redirect: 'error',
+      cache: 'no-store',
+      signal: AbortSignal.timeout(8000),
+    });
+
+    if (!response.ok) throw new Error(`WHMCS API returned HTTP ${response.status}`);
+    const payload: { result?: string; products?: { product?: WhmcsProduct[] } } = await response.json();
+    const products = payload.products?.product;
+    if (payload.result !== 'success' || !Array.isArray(products) || products.length === 0) {
+      throw new Error('WHMCS API did not return a VPS Lite catalog');
+    }
+
+    return products.map((product) => {
+      const id = String(product.pid);
+      const name = cleanHtml(product.name);
+      const features = parseFeatures(product.description);
+      if (!/^\d+$/.test(id) || String(product.gid) !== groupId || !name || features.length === 0) {
+        throw new Error('WHMCS API returned an invalid VPS Lite product');
       }
 
-      return {
-        id: `vps-${product.id}`,
-        name: product.name,
-        badge: index === 2 ? 'Phổ biến nhất' : undefined,
-        isPopular: index === 2,
-        cpu: findFeature(product.features, /\bCPU\b/i, 'CPU theo cấu hình gói'),
-        ram: findFeature(product.features, /\bRAM\b/i, 'RAM theo cấu hình gói'),
-        disk: findFeature(product.features, /SSD|NVMe/i, 'SSD NVMe U.2'),
-        bandwidth: [
-          findFeature(product.features, /Net Port/i, '100 Mbps Net Port'),
-          findFeature(product.features, /băng thông/i, 'Không giới hạn băng thông'),
-        ].join(' · '),
-        ipv4: findFeature(product.features, /IPv4/i, '1 IPv4 Dùng Riêng'),
-        priceMonthly: product.price,
-        orderUrl: product.orderUrl,
-        features: product.features,
-        billingCycles,
-      };
+      const productUrl = product['product-url'] || product.product_url;
+      const orderUrl = productUrl
+        ? new URL(productUrl, PORTAL_ORIGIN).toString()
+        : `${PORTAL_ORIGIN}/cart.php?a=add&pid=${id}`;
+      if (productUrl && !orderUrl.startsWith(`${VPS_LITE_URL}/`)) {
+        throw new Error('WHMCS API product URL is outside the VPS Lite catalog');
+      }
+
+      const pricing = product.pricing?.VND;
+      const cycles = CYCLE_DEFINITIONS.flatMap((definition) => {
+        const total = Number(pricing?.[definition.cycle]);
+        return Number.isFinite(total) && total > 0 ? [{ ...definition, total }] : [];
+      });
+
+      return makeVpsLitePlan({ id, name, orderUrl, features }, cycles);
+    });
+  },
+  ['vps-lite-api-v1'],
+  { revalidate: 900 },
+);
+
+const fetchVpsLiteBillingCycles = unstable_cache(
+  fetchProductBillingCycles,
+  ['vps-lite-billing-cycles-v1'],
+  { revalidate: 900 },
+);
+
+export async function getVpsLite(): Promise<VpsPlan[]> {
+  const groupId = process.env.WHMCS_VPS_LITE_GROUP_ID?.trim();
+  if (groupId && /^\d+$/.test(groupId) && process.env.WHMCS_API_IDENTIFIER && process.env.WHMCS_API_SECRET) {
+    try {
+      return await fetchVpsLiteApi(groupId);
+    } catch {
+      console.warn('[portal] WHMCS VPS Lite API unavailable; using the public storefront.');
+    }
+  }
+
+  try {
+    const products = await fetchPortalProducts(VPS_LITE_URL);
+    if (products.some((product) => (
+      !product.name || !Number.isFinite(product.price) || product.price <= 0
+      || product.billingCycle !== '1 tháng' || !product.orderUrl.startsWith(`${VPS_LITE_URL}/`)
+    ))) {
+      throw new Error('Portal returned incomplete VPS Lite product data');
+    }
+
+    return await Promise.all(products.map(async (product) => {
+      const monthly = { ...CYCLE_DEFINITIONS[0], total: product.price };
+      let billingCycles: BillingCyclePrice[];
+      try {
+        const checkoutCycles = await fetchVpsLiteBillingCycles(product.orderUrl);
+        billingCycles = checkoutCycles.some((cycle) => cycle.cycle === 'monthly')
+          ? checkoutCycles
+          : [monthly, ...checkoutCycles];
+      } catch {
+        const snapshot = FALLBACK_VPS_LITE.find((plan) => (
+          plan.id === `vps-${product.id}` && plan.orderUrl === product.orderUrl && plan.priceMonthly === product.price
+        ));
+        billingCycles = snapshot?.billingCycles ?? [monthly];
+        console.warn(`[portal] VPS Lite billing cycles unavailable for product ${product.id}.`);
+      }
+      return makeVpsLitePlan(product, billingCycles);
     }));
   } catch {
-    return FALLBACK_CLOUD_VPS;
+    console.warn('[portal] VPS Lite pricing unavailable; using the 2026-11-26 snapshot.');
+    return FALLBACK_VPS_LITE;
   }
 }

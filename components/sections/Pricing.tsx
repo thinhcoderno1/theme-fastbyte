@@ -13,14 +13,17 @@ interface PricingProps {
 }
 
 export function Pricing({ plans }: PricingProps) {
-  const cycles = plans[0]?.billingCycles ?? [];
+  const cycles = Array.from(new Map(
+    plans.flatMap((plan) => (plan.billingCycles ?? []).map((cycle) => [cycle.cycle, cycle] as const)),
+  ).values()).sort((first, second) => first.months - second.months);
   const [selectedCycle, setSelectedCycle] = useState<BillingCycleKey>('monthly');
 
-  const getCyclePrice = (plan: VpsPlan): BillingCyclePrice => (
-    plan.billingCycles?.find((cycle) => cycle.cycle === selectedCycle)
-    ?? plan.billingCycles?.[0]
-    ?? { cycle: 'monthly', label: '1 tháng', months: 1, total: plan.priceMonthly }
-  );
+  const getCyclePrice = (plan: VpsPlan): BillingCyclePrice | undefined => {
+    if (plan.billingCycles) return plan.billingCycles.find((cycle) => cycle.cycle === selectedCycle);
+    if (selectedCycle === 'monthly') {
+      return { cycle: 'monthly', label: '1 tháng', months: 1, total: plan.priceMonthly };
+    }
+  };
 
   return (
     <section id="bang-gia" className="relative border-y border-line bg-surface-subtle py-20 md:py-24">
@@ -29,7 +32,7 @@ export function Pricing({ plans }: PricingProps) {
           <SectionHeader
             overline="Pricing Table"
             title="Bảng Giá Thuê VPS Giá Rẻ 2026"
-            subtitle="Chọn chu kỳ để xem đúng tổng tiền và đơn giá quy đổi theo tháng."
+            subtitle="Xem tổng tiền theo chu kỳ thanh toán."
             align="center"
           />
         </FadeIn>

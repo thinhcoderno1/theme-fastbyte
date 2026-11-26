@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPlatinumDeals, getCloudVps } from '@/lib/api';
+import { getPlatinumDeals, getVpsLite } from '@/lib/api';
 import { Hero } from '@/components/sections/Hero';
 import { HotDeals } from '@/components/sections/HotDeals';
 import { Pricing } from '@/components/sections/Pricing';
@@ -22,7 +22,7 @@ export default async function HomePage() {
   // Fetch portal pricing with verified snapshots as a fallback.
   const [deals, plans] = await Promise.all([
     getPlatinumDeals(),
-    getCloudVps(),
+    getVpsLite(),
   ]);
   const annualPlatinumPrices = deals
     .map((deal) => getPlatinumCyclePrice(deal, 'annually')?.total)
@@ -63,7 +63,7 @@ export default async function HomePage() {
       {/* Schema.org Product JSON-LD */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productCatalogSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productCatalogSchema).replace(/</g, '\\u003c') }}
       />
 
       {/* 1. Hero Section */}
